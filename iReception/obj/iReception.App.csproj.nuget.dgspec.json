@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Programowanie\\projects\\iReception\\iReception\\iReception\\iReception.App.csproj": {}
+    "G:\\Programowanie\\Projects\\iReception\\iReception\\iReception.App.csproj": {}
   },
   "projects": {
-    "C:\\Programowanie\\projects\\iReception\\iReception\\iReception\\iReception.App.csproj": {
+    "G:\\Programowanie\\Projects\\iReception\\iReception\\iReception.App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Programowanie\\projects\\iReception\\iReception\\iReception\\iReception.App.csproj",
+        "projectUniqueName": "G:\\Programowanie\\Projects\\iReception\\iReception\\iReception.App.csproj",
         "projectName": "iReception.App",
-        "projectPath": "C:\\Programowanie\\projects\\iReception\\iReception\\iReception\\iReception.App.csproj",
-        "packagesPath": "C:\\Users\\Mateu\\.nuget\\packages\\",
-        "outputPath": "C:\\Programowanie\\projects\\iReception\\iReception\\iReception\\obj\\",
+        "projectPath": "G:\\Programowanie\\Projects\\iReception\\iReception\\iReception.App.csproj",
+        "packagesPath": "C:\\Users\\Mateusz\\.nuget\\packages\\",
+        "outputPath": "G:\\Programowanie\\Projects\\iReception\\iReception\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Mateu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mateusz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

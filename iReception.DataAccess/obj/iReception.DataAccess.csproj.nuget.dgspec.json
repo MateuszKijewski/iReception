@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Programowanie\\projects\\iReception\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj": {}
+    "G:\\Programowanie\\Projects\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\Programowanie\\projects\\iReception\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj": {
+    "G:\\Programowanie\\Projects\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Programowanie\\projects\\iReception\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj",
+        "projectUniqueName": "G:\\Programowanie\\Projects\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj",
         "projectName": "iReception.DataAccess",
-        "projectPath": "C:\\Programowanie\\projects\\iReception\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Mateu\\.nuget\\packages\\",
-        "outputPath": "C:\\Programowanie\\projects\\iReception\\iReception\\iReception.DataAccess\\obj\\",
+        "projectPath": "G:\\Programowanie\\Projects\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Mateusz\\.nuget\\packages\\",
+        "outputPath": "G:\\Programowanie\\Projects\\iReception\\iReception.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Mateu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mateusz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

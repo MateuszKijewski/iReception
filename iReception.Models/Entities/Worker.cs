@@ -4,8 +4,7 @@ using System.Text;
 
 namespace iReception.Models.Entities
 {
-    public class PersonEntity
+    public class Worker
     {
-        public string thing;
     }
 }
