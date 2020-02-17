@@ -6,6 +6,8 @@ namespace iReception.Models.Entities
 {
     public class Client
     {
+        public int Id { get; set; }
+
         /* Contact info */
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -16,5 +18,10 @@ namespace iReception.Models.Entities
         public string PaymentMethod { get; set; }
         public string CreditCard { get; set; }
         public string IdDocumentNumber { get; set; }
+
+        /* Relations */
+        public Room Room { get; set; }
+
+        public IEnumerable<Transaction> Transactions { get; set; }
     }
 }

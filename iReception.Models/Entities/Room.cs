@@ -17,5 +17,9 @@ namespace iReception.Models.Entities
         public bool IsDamaged { get; set; }
         public bool IsClean { get; set; }
         public bool IsRent { get; set; }
+
+        /* Relations */
+        public int ClientId { get; set; }
+        public Client Client { get; set; }
     }
 }

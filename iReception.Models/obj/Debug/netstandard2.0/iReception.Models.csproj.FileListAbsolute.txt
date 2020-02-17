@@ -1,0 +1,5 @@
+G:\Programowanie\Projects\iReception\iReception.Models\bin\Debug\netstandard2.0\iReception.Models.deps.json
+G:\Programowanie\Projects\iReception\iReception.Models\bin\Debug\netstandard2.0\iReception.Models.dll
+G:\Programowanie\Projects\iReception\iReception.Models\obj\Debug\netstandard2.0\iReception.Models.csprojAssemblyReference.cache
+G:\Programowanie\Projects\iReception\iReception.Models\obj\Debug\netstandard2.0\iReception.Models.AssemblyInfoInputs.cache
+G:\Programowanie\Projects\iReception\iReception.Models\obj\Debug\netstandard2.0\iReception.Models.AssemblyInfo.cs

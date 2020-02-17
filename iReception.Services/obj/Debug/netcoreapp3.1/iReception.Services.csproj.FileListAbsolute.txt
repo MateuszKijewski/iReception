@@ -1,0 +1,8 @@
+G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1\iReception.Services.deps.json
+G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1\iReception.Services.dll
+G:\Programowanie\Projects\iReception\iReception.Services\obj\Debug\netcoreapp3.1\iReception.Services.AssemblyInfoInputs.cache
+G:\Programowanie\Projects\iReception\iReception.Services\obj\Debug\netcoreapp3.1\iReception.Services.AssemblyInfo.cs
+G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1\iReception.Services.pdb
+G:\Programowanie\Projects\iReception\iReception.Services\obj\Debug\netcoreapp3.1\iReception.Services.csprojAssemblyReference.cache
+G:\Programowanie\Projects\iReception\iReception.Services\obj\Debug\netcoreapp3.1\iReception.Services.dll
+G:\Programowanie\Projects\iReception\iReception.Services\obj\Debug\netcoreapp3.1\iReception.Services.pdb

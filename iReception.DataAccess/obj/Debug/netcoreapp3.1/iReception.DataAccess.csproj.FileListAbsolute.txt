@@ -1,0 +1,11 @@
+G:\Programowanie\Projects\iReception\iReception.DataAccess\bin\Debug\netcoreapp3.1\iReception.Models.dll
+G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netcoreapp3.1\iReception.DataAccess.csprojAssemblyReference.cache
+G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netcoreapp3.1\iReception.DataAccess.AssemblyInfoInputs.cache
+G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netcoreapp3.1\iReception.DataAccess.AssemblyInfo.cs
+G:\Programowanie\Projects\iReception\iReception.DataAccess\bin\Debug\netcoreapp3.1\iReception.DataAccess.deps.json
+G:\Programowanie\Projects\iReception\iReception.DataAccess\bin\Debug\netcoreapp3.1\iReception.DataAccess.dll
+G:\Programowanie\Projects\iReception\iReception.DataAccess\bin\Debug\netcoreapp3.1\iReception.DataAccess.pdb
+G:\Programowanie\Projects\iReception\iReception.DataAccess\bin\Debug\netcoreapp3.1\iReception.Models.pdb
+G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netcoreapp3.1\iReception.DataAccess.csproj.CopyComplete
+G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netcoreapp3.1\iReception.DataAccess.dll
+G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netcoreapp3.1\iReception.DataAccess.pdb

@@ -1,0 +1,8 @@
+G:\Programowanie\Projects\iReception\iReception.Models\bin\Debug\netcoreapp3.1\iReception.Models.deps.json
+G:\Programowanie\Projects\iReception\iReception.Models\bin\Debug\netcoreapp3.1\iReception.Models.dll
+G:\Programowanie\Projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\iReception.Models.csprojAssemblyReference.cache
+G:\Programowanie\Projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\iReception.Models.AssemblyInfoInputs.cache
+G:\Programowanie\Projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\iReception.Models.AssemblyInfo.cs
+G:\Programowanie\Projects\iReception\iReception.Models\bin\Debug\netcoreapp3.1\iReception.Models.pdb
+G:\Programowanie\Projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\iReception.Models.dll
+G:\Programowanie\Projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\iReception.Models.pdb

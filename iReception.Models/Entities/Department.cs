@@ -9,5 +9,9 @@ namespace iReception.Models.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Budget { get; set; }
+
+        /* Relations */
+        public IEnumerable<Worker> Workers { get; set; }
     }
+
 }

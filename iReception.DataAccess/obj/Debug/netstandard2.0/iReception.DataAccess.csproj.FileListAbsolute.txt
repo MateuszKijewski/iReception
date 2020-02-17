@@ -1,0 +1,6 @@
+G:\Programowanie\Projects\iReception\iReception.DataAccess\bin\Debug\netstandard2.0\iReception.DataAccess.deps.json
+G:\Programowanie\Projects\iReception\iReception.DataAccess\bin\Debug\netstandard2.0\iReception.DataAccess.dll
+G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netstandard2.0\iReception.DataAccess.csprojAssemblyReference.cache
+G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netstandard2.0\iReception.DataAccess.AssemblyInfoInputs.cache
+G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netstandard2.0\iReception.DataAccess.AssemblyInfo.cs
+G:\Programowanie\Projects\iReception\iReception.DataAccess\bin\Debug\netstandard2.0\iReception.Models.dll
