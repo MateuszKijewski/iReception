@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using iReception.DataAccess;
+using iReception.Models.Converters;
+using iReception.Models.Converters.Interfaces;
+using iReception.Repository;
+using iReception.Repository.Interfaces;
+using iReception.Services;
+using iReception.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +41,22 @@ namespace iReception
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            // Converters
+            services.AddSingleton<IClientConverter, ClientConverter>();
+            // Services
+            services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IClientService, ClientService>();
+
+            services.AddScoped<IUserService, UserService>();
+            
+
+            // Identity settings
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireNonAlphanumeric = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +68,7 @@ namespace iReception
             }
             else
             {
+                app.UseStatusCodePagesWithRedirects("/Error/{0}");
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();

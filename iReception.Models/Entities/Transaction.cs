@@ -17,5 +17,8 @@ namespace iReception.Models.Entities
 
         public int WorkerId { get; set; }
         public Worker Worker { get; set; }
+
+        /* Flags */
+        public bool IsDeleted { get; set; }
     }
 }

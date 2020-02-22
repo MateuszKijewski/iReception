@@ -6,3 +6,12 @@ G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1
 G:\Programowanie\Projects\iReception\iReception.Services\obj\Debug\netcoreapp3.1\iReception.Services.csprojAssemblyReference.cache
 G:\Programowanie\Projects\iReception\iReception.Services\obj\Debug\netcoreapp3.1\iReception.Services.dll
 G:\Programowanie\Projects\iReception\iReception.Services\obj\Debug\netcoreapp3.1\iReception.Services.pdb
+G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1\iReception.Services.runtimeconfig.json
+G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1\iReception.Services.runtimeconfig.dev.json
+G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1\iReception.Models.dll
+G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1\iReception.Models.pdb
+G:\Programowanie\Projects\iReception\iReception.Services\obj\Debug\netcoreapp3.1\iReception.Services.csproj.CopyComplete
+G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1\iReception.DataAccess.dll
+G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1\iReception.Repository.dll
+G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1\iReception.Repository.pdb
+G:\Programowanie\Projects\iReception\iReception.Services\bin\Debug\netcoreapp3.1\iReception.DataAccess.pdb

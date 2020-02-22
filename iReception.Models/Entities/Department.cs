@@ -12,6 +12,9 @@ namespace iReception.Models.Entities
 
         /* Relations */
         public IEnumerable<Worker> Workers { get; set; }
+
+        /* Flags */
+        public bool IsDeleted { get; set; }
     }
 
 }

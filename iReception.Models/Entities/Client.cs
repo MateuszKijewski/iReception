@@ -23,5 +23,8 @@ namespace iReception.Models.Entities
         public Room Room { get; set; }
 
         public IEnumerable<Transaction> Transactions { get; set; }
+
+        /* Flags */
+        public bool IsDeleted { get; set; }
     }
 }

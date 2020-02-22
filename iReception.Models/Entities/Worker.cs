@@ -19,5 +19,8 @@ namespace iReception.Models.Entities
         public Department Department { get; set; }
 
         public IEnumerable<Transaction> Transactions { get; set; }
+
+        /* Flags */
+        public bool IsDeleted { get; set; }
     }
 }

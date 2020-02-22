@@ -26,8 +26,43 @@ using iReception.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "G:\Programowanie\Projects\iReception\iReception\Views\_ViewImports.cshtml"
+using iReception.Models.Dtos;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "G:\Programowanie\Projects\iReception\iReception\Views\_ViewImports.cshtml"
+using iReception.Models.Dtos.AddDtos;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "G:\Programowanie\Projects\iReception\iReception\Views\_ViewImports.cshtml"
+using iReception.Models.Dtos.GetDtos;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "G:\Programowanie\Projects\iReception\iReception\Views\_ViewImports.cshtml"
+using iReception.Models.Dtos.SetDtos;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "G:\Programowanie\Projects\iReception\iReception\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7091c65830b0329e613be026ede8a57552863778", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d2d678773b5606565d426d150d144fdd56106a5b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7b44c2252f1e3e4510b39d70c10c02586c8547d2", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

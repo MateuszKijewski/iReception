@@ -8,6 +8,9 @@ namespace iReception.Models.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }                        
+        public string Description { get; set; }
+
+        /* Flags */
+        public bool IsDamaged { get; set; }
     }
 }

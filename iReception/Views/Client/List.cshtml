@@ -1,0 +1,66 @@
+﻿@{
+	ViewBag.Title = "Clients list";
+}
+
+<h1>List of clients</h1>
+<a class="btn btn-success mb-2" asp-controller="Client" asp-action="Add">Add client</a>
+<table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			<th class="th-sm">
+				Id
+			</th>
+			<th class="th-sm">
+				First Name
+			</th>
+			<th class="th-sm">
+				Last Name
+			</th>
+			<th class="th-sm">
+				Phone Number
+			</th>
+			<th class="th-sm">
+				Email
+			</th>
+			<th class="th-sm">
+				Payment method
+			</th>
+			<th class="th-sm">
+				Credit Card Number
+			</th>
+			<th class="th-sm">
+				Document number
+			</th>
+			<th class="th-sm">
+				Actions
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var client in ViewBag.Clients)
+		{
+			<tr>
+				<td>@client.Id</td>
+				<td>@client.FirstName</td>
+				<td>@client.LastName</td>
+				<td>@client.PhoneNumber</td>
+				<td>@client.Email</td>
+				<td>@client.PaymentMethod</td>
+				<td>@client.CreditCard</td>
+				<td>@client.IdDocumentNumber</td>
+				<td>
+					<form asp-controller="client" asp-action="Delete" asp-route-id="@client.Id" method="post">
+						<div class="btn-group">
+							<a asp-controller="client" asp-action="Show" asp-route-id="@client.Id" class="btn btn-primary">Show</a>
+							<a asp-controller="client" asp-action="edit" asp-route-id="@client.Id" class="btn btn-primary">Edit</a>
+							<button type="submit" class="btn btn-danger"
+									onclick="return confirm('Are you sure you want to delete client @client.FirstName @client.LastName?')">
+								Delete
+							</button>
+						</div>
+					</form>				
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

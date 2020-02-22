@@ -23,6 +23,8 @@ namespace iReception.DataAccess
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             builder.Entity<Client>()
                 .HasOne(c => c.Room)
                 .WithOne(r => r.Client)
@@ -42,7 +44,7 @@ namespace iReception.DataAccess
             builder.Entity<Worker>()
                 .HasOne(w => w.Department)
                 .WithMany(d => d.Workers)
-                .HasForeignKey(w => w.Department);      
+                .HasForeignKey(w => w.DepartmentId);      
         }
     }
 }

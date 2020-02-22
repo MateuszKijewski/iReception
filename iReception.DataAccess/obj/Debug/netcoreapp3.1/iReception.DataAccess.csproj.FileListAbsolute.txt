@@ -9,3 +9,5 @@ G:\Programowanie\Projects\iReception\iReception.DataAccess\bin\Debug\netcoreapp3
 G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netcoreapp3.1\iReception.DataAccess.csproj.CopyComplete
 G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netcoreapp3.1\iReception.DataAccess.dll
 G:\Programowanie\Projects\iReception\iReception.DataAccess\obj\Debug\netcoreapp3.1\iReception.DataAccess.pdb
+G:\Programowanie\Projects\iReception\iReception.DataAccess\bin\Debug\netcoreapp3.1\iReception.DataAccess.runtimeconfig.json
+G:\Programowanie\Projects\iReception\iReception.DataAccess\bin\Debug\netcoreapp3.1\iReception.DataAccess.runtimeconfig.dev.json
