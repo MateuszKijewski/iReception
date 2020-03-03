@@ -9,8 +9,14 @@ namespace iReception.Models.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public ServiceType Type { get; set; }
+    }
 
-        /* Flags */
-        public bool IsDamaged { get; set; }
+    public enum ServiceType
+    {
+        Cleaning,
+        Dining,
+        Restaurant,
+        Other
     }
 }

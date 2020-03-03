@@ -86,3 +86,13 @@ G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Vi
 G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Client\Edit.cshtml.g.cs
 G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Client\List.cshtml.g.cs
 G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Client\Show.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+G:\Programowanie\Projects\iReception\iReception\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+G:\Programowanie\Projects\iReception\iReception\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+G:\Programowanie\Projects\iReception\iReception\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+G:\Programowanie\Projects\iReception\iReception\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\iReception.App.MvcApplicationPartsAssemblyInfo.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Building\Add.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Building\Edit.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Building\List.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Building\Show.cshtml.g.cs

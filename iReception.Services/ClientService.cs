@@ -1,5 +1,6 @@
 ﻿using iReception.Models.Converters.Interfaces;
 using iReception.Models.Dtos.AddDtos;
+using iReception.Models.Dtos.FilterDtos;
 using iReception.Models.Dtos.GetDtos;
 using iReception.Models.Dtos.SetDtos;
 using iReception.Repository.Interfaces;
@@ -50,6 +51,12 @@ namespace iReception.Services
         public async Task<int> DeleteClientAsync(int id)
         {
             return await _repository.DeleteAsync(id);
+        }
+
+        public async Task<List<GetClientDto>> FilterClientsAsync(FilterClientDto filterClientDto)
+        {
+            var filteredClients = await _repository.FilterAsync(filterClientDto);
+            return filteredClients.Select(c => _converter.ClientToGetClientDto(c)).ToList();
         }
     }
 }

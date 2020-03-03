@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -9,6 +10,7 @@ namespace iReception.Models.Dtos
     {
         [Required]
         [EmailAddress]
+        [Remote(controller:"Account", action: "IsEmailUsed")]
         public string Email { get; set; }
 
         [Required]

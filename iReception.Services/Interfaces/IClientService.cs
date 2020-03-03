@@ -1,4 +1,5 @@
 ﻿using iReception.Models.Dtos.AddDtos;
+using iReception.Models.Dtos.FilterDtos;
 using iReception.Models.Dtos.GetDtos;
 using iReception.Models.Dtos.SetDtos;
 using System;
@@ -15,5 +16,6 @@ namespace iReception.Services.Interfaces
         Task<List<GetClientDto>> ListClientsAsync();
         Task<int> UpdateClientAsync(int id, SetClientDto setClientDto);
         Task<int> DeleteClientAsync(int id);
+        Task<List<GetClientDto>> FilterClientsAsync(FilterClientDto filterClientDto);
     }
 }

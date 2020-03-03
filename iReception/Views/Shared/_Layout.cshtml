@@ -26,12 +26,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="List">Clients</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Building" asp-action="List">Buildings</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav ml-auto">
                         @if (signInManager.IsSignedIn(User))
-						{
+                        {
                             <li class="nav-item">
                                 <form method="post" asp-action="logout" asp-controller="account">
                                     <button type="submit" class="nav-link btn btn-link py-0">
@@ -39,12 +42,13 @@
                                     </button>
                                 </form>
                             </li>
-						}
+                        }
                         else
-						{
+                        {
                             <li class="nav-item">
                                 <a asp-action="register" asp-controller="account" class="nav-link">Register</a>
-                            </li> 
+                            </li>
+
                             <li class="nav-item">
                                 <a asp-action="login" asp-controller="account" class="nav-link">Login</a>
                             </li>
@@ -67,6 +71,8 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)

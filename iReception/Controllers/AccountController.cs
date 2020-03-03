@@ -87,6 +87,12 @@ namespace iReception.App.Controllers
             return View(loginUserDto);
         }
 
-
+        /* Remote validation */
+        [HttpGet][HttpPost]
+        public async Task<IActionResult> IsEmailUsed(string email)
+        {
+            var mailExists = await _userService.CheckMail(email);
+            return mailExists ? Json($"User with email {email} already exists.") : Json(true);
+        }
     }
 }

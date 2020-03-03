@@ -58,5 +58,11 @@ namespace iReception.Services
             }
     
         }
+
+        public async Task<bool> CheckMail(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            return user == null ? false : true;
+        }
     }
 }

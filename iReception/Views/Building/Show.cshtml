@@ -1,0 +1,39 @@
+﻿@model GetBuildingDto
+@{
+	ViewBag.Title = "Show building";
+}
+
+<h1>Building details</h1>
+<div class="row">
+	<div class="col-md-12">
+		<div class="card mb-2">
+			<div class="card-header">Contact info</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					<label asp-for="Address"></label>
+				</h5>
+				<p class="card-text">@Model.Address</p>
+				<hr />
+				<h5 class="card-title">
+					<label asp-for="ShortName"></label>
+				</h5>
+				<p class="card-text">@Model.ShortName</p>
+				<div class="form-check-inline mt-3">
+					@if (Model.IsAvailable)
+					{
+						<input asp-for="IsAvailable " disabled="disabled" class="form-check-input" type="checkbox" id="inlineCheckbox1" checked="checked" />
+					}
+					else
+					{
+						<input asp-for="IsAvailable " disabled="disabled" class="form-check-input" type="checkbox" id="inlineCheckbox1" />
+					}
+					<span asp-validation-for="IsAvailable" class="text-danger"></span>
+					<label class="form-check-label" for="inlineCheckbox1">Available</label>
+				</div>
+			</div>
+		</div>
+		<a asp-controller="building" asp-action="list" class="btn btn-info">Return to list</a>
+		<a asp-controller="building" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+	</div>
+	
+</div>

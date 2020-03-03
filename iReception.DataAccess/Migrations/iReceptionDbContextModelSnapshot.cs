@@ -215,6 +215,30 @@ namespace iReception.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("iReception.Models.Entities.Building", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ShortName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Buildings");
+                });
+
             modelBuilder.Entity("iReception.Models.Entities.Client", b =>
                 {
                     b.Property<int>("Id")
@@ -272,6 +296,33 @@ namespace iReception.DataAccess.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("iReception.Models.Entities.MinuteService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MaxTime")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinTime")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PricePerMinute")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MinuteServices");
+                });
+
             modelBuilder.Entity("iReception.Models.Entities.Room", b =>
                 {
                     b.Property<int>("Id")
@@ -279,14 +330,17 @@ namespace iReception.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BuildingId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<int>("Floor")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("FurnitureValue")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsClean")
                         .HasColumnType("bit");
@@ -311,10 +365,27 @@ namespace iReception.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BuildingId");
+
                     b.HasIndex("ClientId")
                         .IsUnique();
 
                     b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("iReception.Models.Entities.RoomToMinuteService", b =>
+                {
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinuteServiceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoomId", "MinuteServiceId");
+
+                    b.HasIndex("MinuteServiceId");
+
+                    b.ToTable("RoomToMinuteServices");
                 });
 
             modelBuilder.Entity("iReception.Models.Entities.Service", b =>
@@ -327,11 +398,11 @@ namespace iReception.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDamaged")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -457,9 +528,30 @@ namespace iReception.DataAccess.Migrations
 
             modelBuilder.Entity("iReception.Models.Entities.Room", b =>
                 {
+                    b.HasOne("iReception.Models.Entities.Building", "Building")
+                        .WithMany("Rooms")
+                        .HasForeignKey("BuildingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("iReception.Models.Entities.Client", "Client")
                         .WithOne("Room")
                         .HasForeignKey("iReception.Models.Entities.Room", "ClientId");
+                });
+
+            modelBuilder.Entity("iReception.Models.Entities.RoomToMinuteService", b =>
+                {
+                    b.HasOne("iReception.Models.Entities.MinuteService", "MinuteService")
+                        .WithMany("RoomToMinuteServices")
+                        .HasForeignKey("MinuteServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("iReception.Models.Entities.Room", "Room")
+                        .WithMany("RoomToMinuteServices")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("iReception.Models.Entities.Transaction", b =>

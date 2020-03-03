@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using iReception.Models.Dtos.AddDtos;
+using iReception.Models.Dtos.FilterDtos;
 using iReception.Models.Dtos.SetDtos;
 using iReception.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,18 @@ namespace iReception.App.Controllers
         {
 
             var clients = await _clientService.ListClientsAsync();
+            ViewBag.Clients = clients;
+
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> List(FilterClientDto filterClientDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            var clients = await _clientService.FilterClientsAsync(filterClientDto);
             ViewBag.Clients = clients;
 
             return View();

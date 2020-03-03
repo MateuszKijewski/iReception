@@ -1,0 +1,46 @@
+﻿@model SetBuildingDto
+@{
+	ViewBag.Title = "Update building";
+}
+
+<h1>Update building</h1>
+<div class="row">
+	<div class="col-md-12">
+		<form method="post">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<div class="card mb-2">
+				<div class="card-header">Info</div>
+				<div class="card-body">
+					<h5 class="card-title">
+						<label asp-for="Address"></label>
+					</h5>
+					<input asp-for="Address" class="form-control" value="@ViewBag.Building.Address" />
+					<span asp-validation-for="Address" class="text-danger"></span>
+					<hr />
+					<h5 class="card-title">
+						<label asp-for="ShortName"></label>
+					</h5>
+					<input asp-for="ShortName" class="form-control" value="@ViewBag.Building.ShortName" />
+					<span asp-validation-for="ShortName" class="text-danger"></span>
+					<div class="form-check-inline mt-3">
+						@if (ViewBag.Building.IsAvailable)
+						{
+							<input asp-for="IsAvailable " class="form-check-input" type="checkbox" id="inlineCheckbox1" checked="checked" />
+						}
+						else
+						{
+							<input asp-for="IsAvailable " class="form-check-input" type="checkbox" id="inlineCheckbox1" />
+						}
+						<span asp-validation-for="IsAvailable" class="text-danger"></span>
+						<label class="form-check-label" for="inlineCheckbox1">Available</label>
+					</div>
+					<h5 class="card-title">
+				</div>
+			</div>
+			<a asp-controller="building" asp-action="list" class="btn btn-info">Return to list</a>
+			<a asp-controller="building" asp-action="show" asp-route-id="@ViewBag.Building.Id" class="btn btn-info">Return to building</a>
+			<button type="submit" class="btn btn-primary">Update building</button>
+		</form>
+	</div>
+	
+</div>

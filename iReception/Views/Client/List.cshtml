@@ -1,66 +1,135 @@
-﻿@{
+﻿@model FilterClientDto
+@{
 	ViewBag.Title = "Clients list";
 }
-
-<h1>List of clients</h1>
-<a class="btn btn-success mb-2" asp-controller="Client" asp-action="Add">Add client</a>
-<table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
-	<thead>
-		<tr>
-			<th class="th-sm">
-				Id
-			</th>
-			<th class="th-sm">
-				First Name
-			</th>
-			<th class="th-sm">
-				Last Name
-			</th>
-			<th class="th-sm">
-				Phone Number
-			</th>
-			<th class="th-sm">
-				Email
-			</th>
-			<th class="th-sm">
-				Payment method
-			</th>
-			<th class="th-sm">
-				Credit Card Number
-			</th>
-			<th class="th-sm">
-				Document number
-			</th>
-			<th class="th-sm">
-				Actions
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var client in ViewBag.Clients)
-		{
-			<tr>
-				<td>@client.Id</td>
-				<td>@client.FirstName</td>
-				<td>@client.LastName</td>
-				<td>@client.PhoneNumber</td>
-				<td>@client.Email</td>
-				<td>@client.PaymentMethod</td>
-				<td>@client.CreditCard</td>
-				<td>@client.IdDocumentNumber</td>
-				<td>
-					<form asp-controller="client" asp-action="Delete" asp-route-id="@client.Id" method="post">
-						<div class="btn-group">
-							<a asp-controller="client" asp-action="Show" asp-route-id="@client.Id" class="btn btn-primary">Show</a>
-							<a asp-controller="client" asp-action="edit" asp-route-id="@client.Id" class="btn btn-primary">Edit</a>
-							<button type="submit" class="btn btn-danger"
-									onclick="return confirm('Are you sure you want to delete client @client.FirstName @client.LastName?')">
-								Delete
-							</button>
+	<h1 class="ml-3 mb-2">List of clients</h1>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-3">
+				<form method="post">
+					<div asp-validation-summary="All" class="text-danger"></div>
+					<div class="card">
+						<div class="card-header">Filter</div>
+						<div class="card-body">
+							<p class="card-title mb-n1">
+								<label asp-for="MinId"></label>
+							</p>
+							<div class="row">
+								<div class="col mr-n2">
+									<input asp-for="MinId" type="number" class="form-control" placeholder="min" />
+									<span asp-validation-for="MinId" class="text-danger"></span>
+								</div>
+								<div class="col">
+									<input asp-for="MaxId" type="number" class="form-control" placeholder="max" />
+									<span asp-validation-for="MaxId" class="text-danger"></span>
+								</div>
+							</div>
+							<p class="card-title mb-n1">
+								<label asp-for="FirstName"></label>
+							</p>
+							<input asp-for="FirstName" class="form-control" />
+							<span asp-validation-for="FirstName" class="text-danger"></span>
+							<p class="card-title mb-n1">
+								<label asp-for="LastName"></label>
+							</p>
+							<input asp-for="LastName" class="form-control" />
+							<span asp-validation-for="LastName" class="text-danger"></span>
+							<p class="card-title mb-n1">
+								<label asp-for="PhoneNumber"></label>
+							</p>
+							<input asp-for="PhoneNumber" class="form-control" />
+							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+							<p class="card-title mb-n1">
+								<label asp-for="Email"></label>
+							</p>
+							<input asp-for="Email" class="form-control" />
+							<span asp-validation-for="Email" class="text-danger"></span>
+							<p class="card-title mb-n1">
+								<label asp-for="PaymentMethod"></label>
+							</p>
+							<input asp-for="PaymentMethod" class="form-control" />
+							<span asp-validation-for="PaymentMethod" class="text-danger"></span>
+							<p class="card-title mb-n1">
+								<label asp-for="CreditCard"></label>
+							</p>
+							<input asp-for="CreditCard" class="form-control" />
+							<span asp-validation-for="CreditCard" class="text-danger"></span>
+							<p class="card-title mb-n1">
+								<label asp-for="IdDocumentNumber"></label>
+							</p>
+							<input asp-for="IdDocumentNumber" class="form-control" />
+							<span asp-validation-for="IdDocumentNumber" class="text-danger"></span>
+							<hr />
+							<div>
+								<button type="submit" class="btn btn-info">Search</button>
+								<a asp-controller="client" asp-action="list" class="btn btn-info">Reset filters</a>
+							</div>
 						</div>
-					</form>				
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+				</form>
+			</div>
+			</div>
+			<div class="col-9 mt-3">
+				<table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%" style="border-top: none">
+					<thead>
+						<tr>
+							<th class="th-sm">
+								Id
+							</th>
+							<th class="th-sm">
+								First Name
+							</th>
+							<th class="th-sm">
+								Last Name
+							</th>
+							<th class="th-sm">
+								Phone Number
+							</th>
+							<th class="th-sm">
+								Email
+							</th>
+							<th class="th-sm">
+								Payment method
+							</th>
+							<th class="th-sm">
+								Credit Card Number
+							</th>
+							<th class="th-sm">
+								Document number
+							</th>
+							<th class="th-sm">
+								Actions
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var client in ViewBag.Clients)
+						{
+							<tr>
+								<td>@client.Id</td>
+								<td>@client.FirstName</td>
+								<td>@client.LastName</td>
+								<td>@client.PhoneNumber</td>
+								<td>@client.Email</td>
+								<td>@client.PaymentMethod</td>
+								<td>@client.CreditCard</td>
+								<td>@client.IdDocumentNumber</td>
+								<td>
+									<form asp-controller="client" asp-action="Delete" asp-route-id="@client.Id" method="post">
+										<div class="btn-group">
+											<a asp-controller="client" asp-action="Show" asp-route-id="@client.Id" class="btn btn-primary">Show</a>
+											<a asp-controller="client" asp-action="edit" asp-route-id="@client.Id" class="btn btn-primary">Edit</a>
+											<button type="submit" class="btn btn-danger"
+													onclick="return confirm('Are you sure you want to delete client @client.FirstName @client.LastName?')">
+												Delete
+											</button>
+										</div>
+									</form>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+				<a class="btn btn-success mb-2" asp-controller="Client" asp-action="Add">Add client</a>
+			</div>
+		</div>
+	</div>

@@ -13,5 +13,6 @@ namespace iReception.Services.Interfaces
         Task Register(RegisterUserDto registerUserDto, List<String> errors);
         Task Logout();
         Task Login(LoginUserDto loginUserDto, List<String> errors);
+        Task<bool> CheckMail(string email);
     }
 }
