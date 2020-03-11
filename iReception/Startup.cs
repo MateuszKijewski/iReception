@@ -45,12 +45,15 @@ namespace iReception
             // Converters
             services.AddSingleton<IClientConverter, ClientConverter>();
             services.AddSingleton<IBuildingConverter, BuildingConverter>();
-            // Services
+            services.AddSingleton<IRoomConverter, RoomConverter>();
+            // Repositories
             services.AddScoped<IClientRepository, ClientRepository>();
-            services.AddScoped<IClientService, ClientService>();
-
             services.AddScoped<IBuildingRepository, BuildingRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
+            // Services
+            services.AddScoped<IClientService, ClientService>();            
             services.AddScoped<IBuildingService, BuildingService>();
+            services.AddScoped<IRoomService, RoomService>();
 
             services.AddScoped<IUserService, UserService>();
             

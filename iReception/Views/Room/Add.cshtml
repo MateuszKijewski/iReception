@@ -1,0 +1,44 @@
+﻿@model AddRoomDto
+@{
+	ViewBag.Title = "Add room";
+}
+
+<h1>Add new client</h1>
+<div class="row">
+	<div class="col-md-12">
+		<form method="post">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<h2>Contact info</h2>
+			<div class="form-group">
+				<label asp-for="Number"></label>
+				<input asp-for="Number" class="form-control" />
+				<span asp-validation-for="Number" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Standard"></label>
+				<select asp-for="Standard"
+						asp-items="Html.GetEnumSelectList<StandardEnum>()">
+				</select>
+				<span asp-validation-for="Standard" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Floor"></label>
+				<input asp-for="Floor" class="form-control" />
+				<span asp-validation-for="Floor" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="PricePerDay"></label>
+				<input asp-for="PricePerDay" class="form-control" />
+				<span asp-validation-for="PricePerDay" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="BuildingId"></label>
+				<select asp-for="BuildingId"
+						asp-items="@(new SelectList(ViewBag.Buildings, "Id", "ShortName"))">
+				</select>
+				<span asp-validation-for="Standard" class="text-danger"></span>
+			</div>
+			<button type="submit" class="btn btn-primary">Add building</button>
+		</form>
+	</div>
+</div>

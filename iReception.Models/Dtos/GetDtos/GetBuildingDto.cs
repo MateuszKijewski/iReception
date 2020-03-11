@@ -20,5 +20,10 @@ namespace iReception.Models.Dtos.GetDtos
 
         /* Relations */
         public IEnumerable<Room> Rooms { get; set; }
+
+        public override string ToString()
+        {
+            return ShortName;
+        }
     }
 }

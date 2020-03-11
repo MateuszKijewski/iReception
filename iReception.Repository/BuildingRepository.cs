@@ -53,7 +53,7 @@ namespace iReception.Repository
             int minId = filterBuildingDto.MinId ?? 0;
             int maxId = filterBuildingDto.MaxId ?? 0;
             int filters = 0;
-            bool availabilityFiltered = false;
+            bool availableFiltered = false;
 
             List<Building> result = new List<Building>();
             if (minId > 0 || maxId > 0)
@@ -92,17 +92,17 @@ namespace iReception.Repository
             {
                 var availableBuldings = await _db.Buildings.Where(b => b.IsAvailable).ToListAsync();
                 result.AddRange(availableBuldings);
-                if (!availabilityFiltered) { availabilityFiltered = true; }
+                if (!availableFiltered) { availableFiltered = true; }
             }
             if (filterBuildingDto.IsNotAvailable)
             {
                 var notAvailableBuildings = await _db.Buildings.Where(b => !b.IsAvailable).ToListAsync();
                 result.AddRange(notAvailableBuildings);
-                if (!availabilityFiltered) { availabilityFiltered = true; }
+                if (!availableFiltered) { availableFiltered = true; }
 
             }
 
-            if (availabilityFiltered) { filters += 1; }
+            if (availableFiltered) { filters += 1; }
             var groupedResults = result.GroupBy(r => r);
             List<Building> finalResult = new List<Building>();
             foreach(var gr in groupedResults)
@@ -125,7 +125,7 @@ namespace iReception.Repository
                 }
                 throw new KeyNotFoundException("Requested building is deleted");
             }
-            throw new NullReferenceException("Building not found in database");
+            throw new NullReferenceException("Requested building does not exist");
         }
 
         public async Task<IEnumerable<Building>> ListAsync()

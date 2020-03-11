@@ -18,8 +18,6 @@ namespace iReception.Models.Dtos.FilterDtos
 
         [Display(Name = "Availability")]
         public bool IsAvailable { get; set; }
-        
-        [Display(Name = "Not available")]
         public bool IsNotAvailable { get; set; }
     }
 }

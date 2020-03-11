@@ -34,5 +34,10 @@ namespace iReception.Models.Dtos.GetDtos
 
         /* Flags */
         public bool IsDeleted { get; set; }
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}";
+        }
     }
 }

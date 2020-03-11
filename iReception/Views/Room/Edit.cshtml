@@ -1,0 +1,126 @@
+﻿@model SetRoomDto
+@{
+	ViewBag.Title = "Update room";
+	var standards = Html.GetEnumSelectList<StandardEnum>();
+	foreach (var option in standards)
+	{
+		if (option.Value == ViewBag.Room.Standard)
+		{
+			option.Selected = true;
+		}
+	}
+	var buildings = new SelectList(ViewBag.Buildings, "Id", "ShortName");
+	foreach (var building in buildings)
+	{
+		if (building.Value == ViewBag.Room.BuildingId)
+		{
+			building.Selected = true;
+		}
+	}
+	ViewBag.Standards = standards;
+	ViewBag.Buildings = buildings;
+}
+
+<h1>update room</h1>
+<div class="row">
+	<div class="col-md-12">
+		<form method="post">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<div class="card mb-2">
+				<div class="card-header">Info</div>
+				<div class="card-body">
+					<h5 class="card-title">
+						<label asp-for="Number"></label>
+					</h5>
+					<input asp-for="Number" class="form-control" value="@ViewBag.Room.Number" />
+					<span asp-validation-for="Number" class="text-danger"></span>
+					<hr />
+					<h5 class="card-title">
+						<label asp-for="Standard"></label>
+					</h5>
+					<select asp-for="Standard"
+							asp-items="ViewBag.Standards">
+					</select>
+					<span asp-validation-for="Standard" class="text-danger"></span>
+					<hr />
+					<h5 class="card-title">
+						<label asp-for="Floor"></label>
+					</h5>
+					<input asp-for="Floor" class="form-control" value="@ViewBag.Room.Floor" />
+					<span asp-validation-for="Floor" class="text-danger"></span>
+					<hr />
+					<h5 class="card-title">
+						<label asp-for="PricePerDay"></label>
+					</h5>
+					<input asp-for="PricePerDay" class="form-control" value="@ViewBag.Room.PricePerDay" />
+					<span asp-validation-for="PricePerDay" class="text-danger"></span>
+					<hr />
+					<h5 class="card-title">
+						<label asp-for="BuildingId"></label>
+					</h5>
+					<select asp-for="BuildingId"
+							asp-items="ViewBag.Buildings">
+					</select>
+					<span asp-validation-for="BuildingId" class="text-danger"></span>
+					<hr />
+
+
+
+
+					<div class="form-check-inline mt-3">
+						@if (ViewBag.Room.IsAvailable)
+						{
+							<input asp-for="IsAvailable " class="form-check-input" type="checkbox" checked="checked" />
+						}
+						else
+						{
+							<input asp-for="IsAvailable " class="form-check-input" type="checkbox" />
+						}
+						<span asp-validation-for="IsAvailable" class="text-danger"></span>
+						<label class="form-check-label" asp-for="IsAvailable"></label>
+					</div>
+					<div class="form-check-inline mt-3">
+						@if (ViewBag.Room.IsDamaged)
+						{
+							<input asp-for="IsDamaged " class="form-check-input" type="checkbox" checked="checked" />
+						}
+						else
+						{
+							<input asp-for="IsDamaged " class="form-check-input" type="checkbox" />
+						}
+						<span asp-validation-for="IsDamaged" class="text-danger"></span>
+						<label class="form-check-label" asp-for="IsDamaged"></label>
+					</div>
+					<div class="form-check-inline mt-3">
+						@if (ViewBag.Room.IsClean)
+						{
+							<input asp-for="IsClean " class="form-check-input" type="checkbox" checked="checked" />
+						}
+						else
+						{
+							<input asp-for="IsClean " class="form-check-input" type="checkbox" />
+						}
+						<span asp-validation-for="IsClean" class="text-danger"></span>
+						<label class="form-check-label" asp-for="IsClean"></label>
+					</div>
+					<div class="form-check-inline mt-3">
+						@if (ViewBag.Room.IsRent)
+						{
+							<input asp-for="IsRent " disabled="disabled" class="form-check-input" type="checkbox" checked="checked" />
+						}
+						else
+						{
+							<input asp-for="IsRent " disabled="disabled" class="form-check-input" type="checkbox" />
+						}
+						<span asp-validation-for="IsRent" class="text-danger"></span>
+						<label class="form-check-label" asp-for="IsRent"></label>
+					</div>
+				</div>
+			</div>
+			<a asp-controller="room" asp-action="list" class="btn btn-info">Return to list</a>
+			<a asp-controller="room" asp-action="show" asp-route-id="@ViewBag.Room.Id" class="btn btn-info">Return to room</a>
+			<button type="submit" class="btn btn-primary">Update room</button>
+		</form>
+	</div>
+
+</div>
