@@ -42,7 +42,7 @@ namespace iReception.Services
             return filteredBuildings.Select(c => _converter.BuildingToGetBuildingDto(c)).ToList();
         }
 
-        public async Task<GetBuildingDto> GetBuildingDto(int id)
+        public async Task<GetBuildingDto> GetBuildingAsync(int id)
         {
             var building = await _repository.GetAsync(id);
             return _converter.BuildingToGetBuildingDto(building);

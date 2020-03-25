@@ -1,14 +1,15 @@
 ﻿@model AddRoomDto
 @{
 	ViewBag.Title = "Add room";
+	var buildings = new SelectList(Model.Buildings, "Id", "ShortName");
+	ViewBag.Buildings = buildings;
 }
 
-<h1>Add new client</h1>
+<h1>Add new room</h1>
 <div class="row">
 	<div class="col-md-12">
-		<form method="post">
-			<div asp-validation-summary="All" class="text-danger"></div>
-			<h2>Contact info</h2>
+		<form enctype="multipart/form-data" method="post">
+			<div asp-validation-summary="All" class="text-danger"></div>		
 			<div class="form-group">
 				<label asp-for="Number"></label>
 				<input asp-for="Number" class="form-control" />
@@ -28,17 +29,36 @@
 			</div>
 			<div class="form-group">
 				<label asp-for="PricePerDay"></label>
-				<input asp-for="PricePerDay" class="form-control" />
+				<input asp-for="PricePerDay" type="number" step="0.01" class="form-control" />
 				<span asp-validation-for="PricePerDay" class="text-danger"></span>
 			</div>
 			<div class="form-group">
 				<label asp-for="BuildingId"></label>
 				<select asp-for="BuildingId"
-						asp-items="@(new SelectList(ViewBag.Buildings, "Id", "ShortName"))">
+						asp-items="ViewBag.Buildings">
 				</select>
 				<span asp-validation-for="Standard" class="text-danger"></span>
 			</div>
-			<button type="submit" class="btn btn-primary">Add building</button>
+			<div class="form-group">
+				<label asp-for="Photo"></label>
+				<div class="custom-file">
+					<input asp-for="Photo" class="form-control custom-file-input" />
+					<label class="custom-file-label">Choose file...</label>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Add room</button>
+
+			@section Scripts {
+				<script>
+					$(document).ready(function () {
+						$('.custom-file-input').on("change", function () {
+							var fileName = $(this).val().split("\\").pop();
+							$(this).next('.custom-file-label').html(fileName);
+						});
+					});
+				</script>
+			}
+
 		</form>
 	</div>
 </div>

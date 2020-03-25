@@ -12,15 +12,17 @@ namespace iReception.Models.Entities
         public StandardEnum Standard { get; set; }
         public int Floor { get; set; }
         public decimal PricePerDay { get; set; }
-        
+        public string PhotoPath { get; set; }
+
         /* Relations */
-        public int ClientId { get; set; }
-        public Client Client { get; set; }
+        public int? ClientId { get; set; }
+        public Client? Client { get; set; }
 
         public int BuildingId { get; set; }
         public Building Building { get; set; }
 
         public IEnumerable<RoomToMinuteService> RoomToMinuteServices { get; set; }
+        public IEnumerable<RoomToService> RoomToServices { get; set; }
 
         /* Flags */
         public bool IsAvailable { get; set; }

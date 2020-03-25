@@ -16,10 +16,13 @@ namespace iReception.Repository
     public class RoomRepository : IRoomRepository
     {
         private readonly iReceptionDbContext _db;
+        private readonly IBuildingRepository _buildingRepository;
 
-        public RoomRepository(iReceptionDbContext db)
+        public RoomRepository(iReceptionDbContext db,
+                            IBuildingRepository buildingRepository)
         {
             _db = db;
+            _buildingRepository = buildingRepository;
         }
 
         public async Task<int> AddAsync(Room room)
@@ -28,7 +31,8 @@ namespace iReception.Repository
             room.IsDamaged = false;
             room.IsClean = true;
             room.IsRent = false;
-            room.IsDeleted = false;            
+            room.IsDeleted = false;
+            room.Building = await _buildingRepository.GetAsync(room.BuildingId);
             await _db.Rooms.AddAsync(room);
             await _db.SaveChangesAsync();
             return room.Id;
@@ -36,13 +40,13 @@ namespace iReception.Repository
 
         public async Task<int> DeleteAsync(int id)
         {
-            var RoomToDelete = await _db.Rooms.FirstOrDefaultAsync(r => r.Id == id);
-            if (RoomToDelete != null)
+            var roomToDelete = await _db.Rooms.FirstOrDefaultAsync(r => r.Id == id);
+            if (roomToDelete != null)
             {
-                if (!RoomToDelete.IsDeleted)
+                if (!roomToDelete.IsDeleted)
                 {
-                    RoomToDelete.IsDeleted = true;
-                    _db.Rooms.Update(RoomToDelete);
+                    roomToDelete.IsDeleted = true;
+                    _db.Rooms.Update(roomToDelete);
                     await _db.SaveChangesAsync();
                     return id;
                 }
@@ -53,23 +57,17 @@ namespace iReception.Repository
 
         public async Task<IEnumerable<Room>> FilterAsync(FilterRoomDto filterRoomDto)
         {
-            int minId = filterRoomDto.MinId ?? 0;
-            int maxId = filterRoomDto.MaxId ?? 0;
             int filters = 0;
-
             bool availableFiltered = false;
             bool damagedFiltered = false;
             bool cleanFiltered = false;
             bool rentFiltered = false;
 
-            List<bool> booleanFilters = new List<bool> {
-                availableFiltered,
-                damagedFiltered,
-                cleanFiltered,
-                rentFiltered 
-            };
-
             List<Room> result = new List<Room>();
+
+            int minId = filterRoomDto.MinId ?? 0;
+            int maxId = filterRoomDto.MaxId ?? 0;               
+
             if (minId > 0 || maxId > 0)
             {
                 var filteredMinIds = await _db.Rooms.Where(r => r.Id >= minId).ToListAsync();
@@ -210,13 +208,10 @@ namespace iReception.Repository
                 if (!rentFiltered) { rentFiltered = true; }
             }
 
-            foreach(var boolFilter in booleanFilters)
-            {
-                if (boolFilter)
-                {
-                    filters += 1;
-                }
-            }
+            if (availableFiltered) { filters += 1; }
+            if (damagedFiltered) { filters += 1; }
+            if (cleanFiltered) { filters += 1; }
+            if (rentFiltered) { filters += 1; }
             var groupedResults = result.GroupBy(r => r);
             List<Room> finalResult = new List<Room>();
             foreach(var gr in groupedResults)

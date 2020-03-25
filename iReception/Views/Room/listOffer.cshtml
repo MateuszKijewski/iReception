@@ -1,0 +1,168 @@
+﻿@model FilterRoomDto
+@{
+    ViewBag.Title = "Rooms list";
+    var buildings = new SelectList(Model.Buildings, "Id", "ShortName");
+    ViewBag.Buildings = buildings;
+}
+<h1 class="ml-3 mb-2">List of rooms</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="card">
+                    <div class="card-header">Filter</div>
+                    <div class="card-body">
+                        <!--<p class="card-title mb-n1">
+        <label asp-for="MinId"></label>
+    </p>
+    <div class="row">
+        <div class="col mr-n2">
+            <input asp-for="MinId" type="number" class="form-control" placeholder="min" />
+            <span asp-validation-for="MinId" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <input asp-for="MaxId" type="number" class="form-control" placeholder="max" />
+            <span asp-validation-for="MaxId" class="text-danger"></span>
+        </div>
+    </div>
+        -->
+                        <p class="card-title mb-n1">
+                            <label asp-for="Number"></label>
+                        </p>
+                        <input asp-for="Number" class="form-control" />
+                        <span asp-validation-for="Number" class="text-danger"></span>
+
+                        <p class="card-title mb-n1">
+                            <label asp-for="Standard"></label>
+                        </p>
+                        <select asp-for="Standard"
+                                asp-items="Html.GetEnumSelectList<StandardEnum>()">
+                        </select>
+                        <span asp-validation-for="Standard" class="text-danger"></span>
+                        <p class="card-title mb-n1">
+                            <label asp-for="MinFloor"></label>
+                        </p>
+                        <div class="row">
+                            <div class="col mr-n2">
+                                <input asp-for="MinFloor" type="number" class="form-control" placeholder="min" />
+                                <span asp-validation-for="MinFloor" class="text-danger"></span>
+                            </div>
+                            <div class="col">
+                                <input asp-for="MaxFloor" type="number" class="form-control" placeholder="max" />
+                                <span asp-validation-for="MaxFloor" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <p class="card-title mb-n1">
+                            <label asp-for="MinPricePerDay"></label>
+                        </p>
+                        <div class="row">
+                            <div class="col mr-n2">
+                                <input asp-for="MinPricePerDay" type="number" class="form-control" placeholder="min" />
+                                <span asp-validation-for="MinPricePerDay" class="text-danger"></span>
+                            </div>
+                            <div class="col">
+                                <input asp-for="MaxPricePerDay" type="number" class="form-control" placeholder="max" />
+                                <span asp-validation-for="MaxPricePerDay" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <!--<p class="card-title mb-n1">
+        <label asp-for="Client"></label>
+    </p>
+    <input asp-for="Client" class="form-control" />
+    <span asp-validation-for="Client" class="text-danger"></span>-->
+                        <p class="card-title mb-n1">
+                            <label asp-for="BuildingId"></label>
+                        </p>
+                        <select asp-for="BuildingId"
+                                asp-items="ViewBag.Buildings">
+                        </select>
+                        <span asp-validation-for="BuildingId" class="text-danger"></span>
+                        <!--<p class="card-title mb-n1">
+        <label asp-for="IsAvailable"></label>
+    </p>
+    <div class="form-check-inline">
+        <input asp-for="IsAvailable " class="form-check-input" type="checkbox" id="inlineCheckbox1" checked>
+        <span asp-validation-for="IsAvailable" class="text-danger"></span>
+        <label class="form-check-label" for="inlineCheckbox1">Available</label>
+    </div>
+    <div class="form-check-inline">
+        <input asp-for="IsNotAvailable" class="form-check-input" type="checkbox" id="inlineCheckbox2" checked>
+        <span asp-validation-for="IsNotAvailable" class="text-danger"></span>
+        <label class="form-check-label" for="inlineCheckbox2">Not available</label>
+    </div>
+    <p class="card-title mb-n1">
+        <label asp-for="IsDamaged"></label>
+    </p>
+    <div class="form-check-inline">
+        <input asp-for="IsDamaged" class="form-check-input" type="checkbox" id="inlineCheckbox1" checked>
+        <span asp-validation-for="IsDamaged" class="text-danger"></span>
+        <label class="form-check-label" for="inlineCheckbox1">Damaged</label>
+    </div>
+    <div class="form-check-inline">
+        <input asp-for="IsNotDamaged" class="form-check-input" type="checkbox" id="inlineCheckbox2" checked>
+        <span asp-validation-for="IsNotDamaged" class="text-danger"></span>
+        <label class="form-check-label" for="inlineCheckbox2">Not damaged</label>
+    </div>
+    <p class="card-title mb-n1">
+        <label asp-for="IsClean"></label>
+    </p>
+    <div class="form-check-inline">
+        <input asp-for="IsClean" class="form-check-input" type="checkbox" id="inlineCheckbox1" checked>
+        <span asp-validation-for="IsClean" class="text-danger"></span>
+        <label class="form-check-label" for="inlineCheckbox1">Clean</label>
+    </div>
+    <div class="form-check-inline">
+        <input asp-for="IsNotClean" class="form-check-input" type="checkbox" id="inlineCheckbox2" checked>
+        <span asp-validation-for="IsNotClean" class="text-danger"></span>
+        <label class="form-check-label" for="inlineCheckbox2">Not clean</label>
+    </div>
+    <p class="card-title mb-n1">
+        <label asp-for="IsRent"></label>
+    </p>
+    <div class="form-check-inline">
+        <input asp-for="IsRent " class="form-check-input" type="checkbox" id="inlineCheckbox1" checked>
+        <span asp-validation-for="IsRent" class="text-danger"></span>
+        <label class="form-check-label" for="inlineCheckbox1">Rent</label>
+    </div>
+    <div class="form-check-inline">
+        <input asp-for="IsNotRent" class="form-check-input" type="checkbox" id="inlineCheckbox2" checked>
+        <span asp-validation-for="IsNotRent" class="text-danger"></span>
+        <label class="form-check-label" for="inlineCheckbox2">Not rent</label>
+    </div>
+    <hr />
+    <div>
+        <button type="submit" class="btn btn-info mb-1">Search</button>
+        <a asp-controller="room" asp-action="list" class="btn btn-info mb-1">Reset</a>
+    </div> -->
+                    </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-10 mt-3">
+        <div class="row">
+            @foreach (var room in ViewBag.Rooms)
+            {
+                <div class="col-4 mb-4">
+                    <div class="card" style="width: 22rem;">
+                        <div class="card-header">
+                            @room.Standard standard
+                        </div>
+                        <img src="~/images/@room.PhotoPath" class="card-img-top" style="height: 160px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Room @room.Number</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Details</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Free wifi | Bathroom | Kitchen
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- <a class="btn btn-success mb-2" asp-controller="room" asp-action="Add">Add rooom</a>-->
+    </div>
+</div>
+	</div>

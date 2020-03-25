@@ -64,7 +64,7 @@ namespace iReception.App.Controllers
         {
             try
             {
-                var building = await _buildingService.GetBuildingDto(id);
+                var building = await _buildingService.GetBuildingAsync(id);
                 return View(building);
             }
             catch (Exception e)
@@ -85,7 +85,7 @@ namespace iReception.App.Controllers
         {
             try
             {
-                var building = await _buildingService.GetBuildingDto(id);
+                var building = await _buildingService.GetBuildingAsync(id);
                 ViewBag.Building = building;
                 return View();
             }

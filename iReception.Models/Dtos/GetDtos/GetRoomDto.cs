@@ -12,10 +12,9 @@ namespace iReception.Models.Dtos.GetDtos
         public StandardEnum Standard { get; set; }
         public int Floor { get; set; }
         public decimal PricePerDay { get; set; }
+        public string PhotoPath { get; set; }
 
         /* Relations */
-        public GetClientDto Client { get; set; }
-
         public GetBuildingDto Building { get; set; }
 
 

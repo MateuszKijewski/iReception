@@ -46,14 +46,20 @@ namespace iReception
             services.AddSingleton<IClientConverter, ClientConverter>();
             services.AddSingleton<IBuildingConverter, BuildingConverter>();
             services.AddSingleton<IRoomConverter, RoomConverter>();
+            services.AddSingleton<IMinuteServiceConverter, MinuteServiceConverter>();
+            services.AddSingleton<IServiceConverter, ServiceConverter>();
             // Repositories
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IBuildingRepository, BuildingRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IMinuteServiceRepository, MinuteServiceRepository>();
+            services.AddScoped<IServiceRepository, ServiceRepository>();
             // Services
             services.AddScoped<IClientService, ClientService>();            
             services.AddScoped<IBuildingService, BuildingService>();
             services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IMinuteServiceService, MinuteServiceService>();
+            services.AddScoped<IServiceService, ServiceService>();
 
             services.AddScoped<IUserService, UserService>();
             

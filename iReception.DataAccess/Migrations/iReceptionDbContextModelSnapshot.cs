@@ -306,6 +306,12 @@ namespace iReception.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("MaxTime")
                         .HasColumnType("int");
 
@@ -333,7 +339,7 @@ namespace iReception.DataAccess.Migrations
                     b.Property<int>("BuildingId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClientId")
+                    b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<int>("Floor")
@@ -357,18 +363,22 @@ namespace iReception.DataAccess.Migrations
                     b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PhotoPath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("PricePerDay")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Standard")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Standard")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BuildingId");
 
                     b.HasIndex("ClientId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[ClientId] IS NOT NULL");
 
                     b.ToTable("Rooms");
                 });
@@ -381,11 +391,32 @@ namespace iReception.DataAccess.Migrations
                     b.Property<int>("MinuteServiceId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("RoomId", "MinuteServiceId");
 
                     b.HasIndex("MinuteServiceId");
 
                     b.ToTable("RoomToMinuteServices");
+                });
+
+            modelBuilder.Entity("iReception.Models.Entities.RoomToService", b =>
+                {
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("RoomId", "ServiceId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("RoomToServices");
                 });
 
             modelBuilder.Entity("iReception.Models.Entities.Service", b =>
@@ -398,11 +429,14 @@ namespace iReception.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -550,6 +584,21 @@ namespace iReception.DataAccess.Migrations
                     b.HasOne("iReception.Models.Entities.Room", "Room")
                         .WithMany("RoomToMinuteServices")
                         .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("iReception.Models.Entities.RoomToService", b =>
+                {
+                    b.HasOne("iReception.Models.Entities.Room", "Room")
+                        .WithMany("RoomToServices")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("iReception.Models.Entities.Service", "Service")
+                        .WithMany("RoomToServices")
+                        .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

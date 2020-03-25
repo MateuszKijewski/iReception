@@ -1,4 +1,5 @@
-﻿using iReception.Models.Enums;
+﻿using iReception.Models.Dtos.GetDtos;
+using iReception.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,6 +25,7 @@ namespace iReception.Models.Dtos.FilterDtos
         public decimal? MaxPricePerDay { get; set; }
 
         public string Client { get; set; }
+        [Display(Name = "Building")]
         public int? BuildingId { get; set; }
 
         [Display(Name = "Available")]
@@ -41,5 +43,8 @@ namespace iReception.Models.Dtos.FilterDtos
         [Display(Name = "Rent")]
         public bool IsRent { get; set; }
         public bool IsNotRent { get; set; }
+
+        /* Display only */
+        public IEnumerable<GetBuildingDto> Buildings { get; set; }
     }
 }

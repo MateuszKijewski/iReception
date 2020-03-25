@@ -21,6 +21,10 @@
     <ProjectReference Include="..\iReception.Services\iReception.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 
 
 </Project>

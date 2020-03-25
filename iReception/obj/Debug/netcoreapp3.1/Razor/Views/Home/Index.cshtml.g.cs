@@ -63,13 +63,20 @@ using iReception.Models.Dtos.FilterDtos;
 #nullable disable
 #nullable restore
 #line 8 "G:\Programowanie\Projects\iReception\iReception\Views\_ViewImports.cshtml"
+using iReception.Models.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "G:\Programowanie\Projects\iReception\iReception\Views\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"99464617055fdb505bb0bb7fd91f9b14f7b0d030", @"/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b2275efe946779b19b5872ac88ad531a9620711f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"feed3628b6e0b2a423db185ce47d382a79c31956", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

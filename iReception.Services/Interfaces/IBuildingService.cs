@@ -12,7 +12,7 @@ namespace iReception.Services.Interfaces
     public interface IBuildingService
     {
         Task<int> AddBuildingAsync(AddBuildingDto addBuildingDto);
-        Task<GetBuildingDto> GetBuildingDto(int id);
+        Task<GetBuildingDto> GetBuildingAsync(int id);
         Task<List<GetBuildingDto>> ListBuildingsAsync();
         Task<int> UpdateBuildingAsync(int id, SetBuildingDto setBuildingDto);
         Task<int> DeleteBuildingAsync(int id);

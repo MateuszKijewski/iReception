@@ -96,3 +96,8 @@ G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Vi
 G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Building\Edit.cshtml.g.cs
 G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Building\List.cshtml.g.cs
 G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Building\Show.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Room\Add.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Room\Edit.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Room\List.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Room\Show.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Room\listOffer.cshtml.g.cs

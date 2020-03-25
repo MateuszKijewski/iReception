@@ -28,7 +28,7 @@ namespace iReception.Repository
             return client.Id;
         }
 
-        public async Task<Client> GetAsync(int id)
+        public async Task<Client> GetAsync(int? id)
         {
             var clientGet = await _db.Clients.FirstOrDefaultAsync(c => c.Id == id);
             if (clientGet != null)

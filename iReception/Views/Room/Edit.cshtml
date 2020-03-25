@@ -4,15 +4,15 @@
 	var standards = Html.GetEnumSelectList<StandardEnum>();
 	foreach (var option in standards)
 	{
-		if (option.Value == ViewBag.Room.Standard)
+		if (option.Value == ViewBag.Room.Standard.ToString())
 		{
 			option.Selected = true;
 		}
 	}
-	var buildings = new SelectList(ViewBag.Buildings, "Id", "ShortName");
+	var buildings = new SelectList(Model.Buildings, "Id", "ShortName");
 	foreach (var building in buildings)
 	{
-		if (building.Value == ViewBag.Room.BuildingId)
+		if (building.Value == ViewBag.Room.Building.ToString())
 		{
 			building.Selected = true;
 		}
@@ -24,11 +24,19 @@
 <h1>update room</h1>
 <div class="row">
 	<div class="col-md-12">
-		<form method="post">
+		<form enctype="multipart/form-data" method="post">
 			<div asp-validation-summary="All" class="text-danger"></div>
 			<div class="card mb-2">
 				<div class="card-header">Info</div>
 				<div class="card-body">
+					<img class="card-img-top rounded mx-auto d-block" src="~/images/@ViewBag.Room.PhotoPath" style="height: 350px; width: 600px;" />
+					<div class="form-group">
+						<label asp-for="Photo"></label>
+						<div class="custom-file">
+							<input asp-for="Photo" class="form-control custom-file-input" />
+							<label class="custom-file-label">Choose file...</label>
+						</div>
+					</div>
 					<h5 class="card-title">
 						<label asp-for="Number"></label>
 					</h5>
@@ -122,5 +130,15 @@
 			<button type="submit" class="btn btn-primary">Update room</button>
 		</form>
 	</div>
+	@section Scripts {
+		<script>
+					$(document).ready(function () {
+						$('.custom-file-input').on("change", function () {
+							var fileName = $(this).val().split("\\").pop();
+							$(this).next('.custom-file-label').html(fileName);
+						});
+					});
+		</script>
+	}
 
 </div>

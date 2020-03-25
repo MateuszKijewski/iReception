@@ -1,4 +1,6 @@
-﻿using iReception.Models.Enums;
+﻿using iReception.Models.Dtos.GetDtos;
+using iReception.Models.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,5 +24,10 @@ namespace iReception.Models.Dtos.SetDtos
         public bool IsDamaged { get; set; }
         public bool IsClean { get; set; }
         public bool IsRent { get; set; }
+
+        // display only
+        public IEnumerable<GetBuildingDto> Buildings { get; set; }
+
+        public IFormFile Photo { get; set; }
     }
 }

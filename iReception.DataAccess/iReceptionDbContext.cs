@@ -17,12 +17,13 @@ namespace iReception.DataAccess
         public DbSet<Client> Clients { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Room> Rooms { get; set; }
-        public DbSet<Service> Services { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Worker> Workers { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<MinuteService> MinuteServices { get; set; }
+        public DbSet<Service> Services { get; set; }
         public DbSet<RoomToMinuteService> RoomToMinuteServices { get; set; }
+        public DbSet<RoomToService> RoomToServices { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -38,6 +39,18 @@ namespace iReception.DataAccess
                 .HasOne(rtms => rtms.MinuteService)
                 .WithMany(ms => ms.RoomToMinuteServices)
                 .HasForeignKey(rtms => rtms.MinuteServiceId);
+
+            builder.Entity<RoomToService>()
+                .HasKey(rts => new { rts.RoomId, rts.ServiceId });
+            builder.Entity<RoomToService>()
+                .HasOne(rts => rts.Room)
+                .WithMany(r => r.RoomToServices)
+                .HasForeignKey(rts => rts.RoomId);
+            builder.Entity<RoomToService>()
+                .HasOne(rts => rts.Service)
+                .WithMany(s => s.RoomToServices)
+                .HasForeignKey(rts => rts.ServiceId);
+
 
             builder.Entity<Room>()
                 .HasOne(r => r.Building)

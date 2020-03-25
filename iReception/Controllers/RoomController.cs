@@ -29,40 +29,82 @@ namespace iReception.App.Controllers
         {
             var rooms = await _roomService.ListRoomsAsync();
             ViewBag.Rooms = rooms;
+            var buildings = await _buildingService.ListBuildingsAsync();
+            var model = new FilterRoomDto();
+            model.Buildings = buildings;
 
-            return View();
+            return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> List(FilterRoomDto filterRoomDto)
         {
+            var buildings = await _buildingService.ListBuildingsAsync();
+            var model = new FilterRoomDto();
+            model.Buildings = buildings;
+
             if (!ModelState.IsValid)
-            {
-                return View();
+            {                                
+                return View(model);
             }
             var rooms = await _roomService.FilterRoomsAsync(filterRoomDto);
             ViewBag.Rooms = rooms;
 
-            return View();
+            return View(model);
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> listOffer()
         {
-            var buildings = _buildingService.ListBuildingsAsync();
-            ViewBag.Buildings = buildings;
+            var rooms = await _roomService.ListRoomsAsync();
+            ViewBag.Rooms = rooms;
+            var buildings = await _buildingService.ListBuildingsAsync();
+            var model = new FilterRoomDto();
+            model.Buildings = buildings;
 
-            return View();
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> listOffer(FilterRoomDto filterRoomDto)
+        {
+            var buildings = await _buildingService.ListBuildingsAsync();
+            var model = new FilterRoomDto();
+            model.Buildings = buildings;
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var rooms = await _roomService.FilterRoomsAsync(filterRoomDto);
+            ViewBag.Rooms = rooms;
+
+            return View(model);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            var buildings = await _buildingService.ListBuildingsAsync();
+            var model = new AddRoomDto();
+            model.Buildings = buildings;
+
+            return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> Add(AddRoomDto addRoomDto)
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                var buildings = await _buildingService.ListBuildingsAsync();
+                var model = new AddRoomDto();
+                model.Buildings = buildings;
+                return View(model);
             }
             await _roomService.AddRoomAsync(addRoomDto);
+            var rooms = await _roomService.ListRoomsAsync();
+            int roomId = rooms.OrderByDescending(r => r.Id).FirstOrDefault().Id;
 
-            return RedirectToAction("list", "room");
+            return RedirectToAction("show", "room", new { id = roomId });
         }
 
         [HttpGet]
@@ -91,12 +133,13 @@ namespace iReception.App.Controllers
         {
             try
             {
-                var buildings = _buildingService.ListBuildingsAsync();
-                ViewBag.Buildings = buildings;
+                var buildings = await _buildingService.ListBuildingsAsync();
+                var model = new SetRoomDto();
+                model.Buildings = buildings;
 
                 var room = await _roomService.GetRoomAsync(id);
                 ViewBag.Room = room;
-                return View();
+                return View(model);
             }
             catch (Exception e)
             {
@@ -118,7 +161,13 @@ namespace iReception.App.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View();
+                    var buildings = await _buildingService.ListBuildingsAsync();
+                    var model = new SetRoomDto();
+                    model.Buildings = buildings;
+
+                    var room = await _roomService.GetRoomAsync(id);
+                    ViewBag.Room = room;
+                    return View(model);
                 }
                 await _roomService.UpdateRoomAsync(id, setRoomDto);
                 return RedirectToAction("show", "room", new { id = id });
