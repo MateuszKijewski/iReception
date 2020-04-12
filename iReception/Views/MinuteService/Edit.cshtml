@@ -1,0 +1,58 @@
+﻿@model SetMinuteServiceDto
+@{
+	ViewBag.Title = "Update service";
+}
+
+<h1>Update service</h1>
+<div class="row">
+	<div class="col-md-12">
+		<form method="post">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<div class="card mb-2">
+				<div class="card-header">Info</div>
+				<div class="card-body">
+					<h5 class="card-title">
+						<label asp-for="Name"></label>
+					</h5>
+					<input asp-for="Name" class="form-control" value="@ViewBag.MinuteService.Name" />
+					<span asp-validation-for="Name" class="text-danger"></span>
+					<hr />
+					<h5 class="card-title">
+						<label asp-for="Description"></label>
+					</h5>
+					<input asp-for="Description" class="form-control" value="@ViewBag.MinuteService.Description" />
+					<span asp-validation-for="Description" class="text-danger"></span>
+					<h5 class="card-title">
+						<label asp-for="PricePerMinute"></label>
+					</h5>
+					<input asp-for="PricePerMinute" class="form-control" value="@ViewBag.MinuteService.PricePerMinute" />
+					<span asp-validation-for="PricePerMinute" class="text-danger"></span>
+					<div class="mt-3 input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">Min - Max rental time</span>
+						</div>
+						<input asp-for="MinTime" type="number" aria-label="Min time" class="form-control" value="@ViewBag.MinuteService.MinTime">
+						<input asp-for="MaxTime" type="number" aria-label="Max time" class="form-control" value="@ViewBag.MinuteService.MaxTime">
+					</div>
+					<div class="form-check-inline mt-3">
+						@if (ViewBag.MinuteService.IsAvailable)
+						{
+							<input asp-for="IsAvailable " class="form-check-input" type="checkbox" id="inlineCheckbox1" checked="checked" />
+						}
+						else
+						{
+							<input asp-for="IsAvailable " class="form-check-input" type="checkbox" id="inlineCheckbox1" />
+						}
+						<span asp-validation-for="IsAvailable" class="text-danger"></span>
+						<label class="form-check-label" for="inlineCheckbox1">Available</label>
+					</div>
+					<h5 class="card-title">
+				</div>
+			</div>
+			<a asp-controller="minuteservice" asp-action="list" class="btn btn-info">Return to list</a>
+			<a asp-controller="minuteservice" asp-action="show" asp-route-id="@ViewBag.MinuteService.Id" class="btn btn-info">Return to minute service</a>
+			<button type="submit" class="btn btn-primary">Update minute service</button>
+		</form>
+	</div>
+	
+</div>

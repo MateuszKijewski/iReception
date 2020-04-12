@@ -101,7 +101,6 @@ namespace iReception.App.Controllers
                 throw;
             }
         }
-
         [HttpPost]
         public async Task<IActionResult> Edit(int id, SetBuildingDto setBuildingDto)
         {

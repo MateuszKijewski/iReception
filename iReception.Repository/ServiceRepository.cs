@@ -1,4 +1,4 @@
-﻿using iReception.DataAccess;
+﻿ using iReception.DataAccess;
 using iReception.Models.Dtos.FilterDtos;
 using iReception.Models.Entities;
 using iReception.Repository.Interfaces;
@@ -25,6 +25,7 @@ namespace iReception.Repository
         {
             service.IsDeleted = false;
             await _db.Services.AddAsync(service);
+            await _db.SaveChangesAsync();
             return service.Id;
         }
 

@@ -26,6 +26,7 @@ namespace iReception.Repository
         {
             minuteService.IsDeleted = false;
             await _db.MinuteServices.AddAsync(minuteService);
+            await _db.SaveChangesAsync();
             return minuteService.Id;
         }
 

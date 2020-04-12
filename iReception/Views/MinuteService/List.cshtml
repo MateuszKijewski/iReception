@@ -1,0 +1,152 @@
+﻿@model FilterMinuteServiceDto
+@{
+	ViewBag.Title = "Minute services list";
+}
+	<h1 class="ml-3 mb-2">List of minute services</h1>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-3">
+				<form method="post">
+					<div asp-validation-summary="All" class="text-danger"></div>
+					<div class="card">
+						<div class="card-header">Filter</div>
+						<div class="card-body">
+							<p class="card-title mb-n1">
+								<label asp-for="MinId"></label>
+							</p>
+							<div class="row">
+								<div class="col mr-n2">
+									<input asp-for="MinId" type="number" class="form-control" placeholder="min" />
+									<span asp-validation-for="MinId" class="text-danger"></span>
+								</div>
+								<div class="col">
+									<input asp-for="MaxId" type="number" class="form-control" placeholder="max" />
+									<span asp-validation-for="MaxId" class="text-danger"></span>
+								</div>
+							</div>
+							<p class="card-title mb-n1">
+								<label asp-for="Name"></label>
+							</p>
+							<input asp-for="Name" class="form-control" />
+							<span asp-validation-for="Name" class="text-danger"></span>
+							<p class="card-title mb-n1">
+								<label asp-for="Description"></label>
+							</p>
+							<input asp-for="Description" class="form-control" />
+							<span asp-validation-for="Description" class="text-danger"></span>
+							<p class="card-title mb-n1">
+								<label asp-for="MinPricePerMinute"></label>
+							</p>
+							<div class="row">
+								<div class="col mr-n2">
+									<input asp-for="MinPricePerMinute" type="number" class="form-control" placeholder="min" />
+									<span asp-validation-for="MinPricePerMinute" class="text-danger"></span>
+								</div>
+								<div class="col">
+									<input asp-for="MaxPricePerMinute" type="number" class="form-control" placeholder="max" />
+									<span asp-validation-for="MaxPricePerMinute" class="text-danger"></span>
+								</div>
+							</div>
+							<p class="card-title mb-n1">
+								<label asp-for="MinTime"></label>
+							</p>
+							<div class="row">
+								<div class="col mr-n2">
+									<input asp-for="MinTime" type="number" class="form-control" placeholder="min" />
+									<span asp-validation-for="MinTime" class="text-danger"></span>
+								</div>
+								<div class="col">
+									<input asp-for="MaxTime" type="number" class="form-control" placeholder="max" />
+									<span asp-validation-for="MaxTime" class="text-danger"></span>
+								</div>
+							</div>
+							<p class="card-title mb-n1">
+								<label asp-for="IsAvailable"></label>
+							</p>
+							<div class="form-check-inline">
+								<input asp-for="IsAvailable " class="form-check-input" type="checkbox" id="inlineCheckbox1" checked>
+								<span asp-validation-for="IsAvailable" class="text-danger"></span>
+								<label class="form-check-label" for="inlineCheckbox1">Available</label>
+							</div>
+							<div class="form-check-inline">
+								<input asp-for="IsNotAvailable" class="form-check-input" type="checkbox" id="inlineCheckbox2" checked>
+								<span asp-validation-for="IsNotAvailable" class="text-danger"></span>
+								<label class="form-check-label" for="inlineCheckbox2">Not available</label>
+							</div>
+							<hr />
+							<div>
+								<button type="submit" class="btn btn-info">Search</button>
+								<a asp-controller="minuteservice" asp-action="list" class="btn btn-info">Reset filters</a>
+							</div>
+						</div>
+				</form>
+			</div>
+			</div>
+			<div class="col-9 mt-3">
+				<table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%" style="border-top: none">
+					<thead>
+						<tr>
+							<th class="th-sm">
+								Id
+							</th>
+							<th class="th-sm">
+								Name
+							</th>
+							<th class="th-sm">
+								Description
+							</th>
+							<th class="th-sm">
+								Price per minute
+							</th>
+							<th class="th-sm">
+								Min rental time
+							</th>
+							<th class="th-sm">
+								Max rental time
+							</th>
+							<th class="th-sm">
+								Available
+							</th>
+							<th class="th-sm">
+								Actions
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var minuteservice in ViewBag.MinuteServices)
+						{
+						<tr>
+							<td>@minuteservice.Id</td>
+							<td>@minuteservice.Name</td>
+							<td>@minuteservice.Description</td>
+							<td>@minuteservice.PricePerMinute</td>
+							<td>@minuteservice.MinTime</td>
+							<td>@minuteservice.MaxTime</td>
+							@if (minuteservice.IsAvailable)
+							{
+								<td>Yes</td>
+							}
+							else
+							{
+								<td>No</td>
+							}
+							<td>
+								<form asp-controller="minuteservice" asp-action="Delete" asp-route-id="@minuteservice.Id" method="post">
+									<div class="btn-group">
+										<a asp-controller="minuteservice" asp-action="Show" asp-route-id="@minuteservice.Id" class="btn btn-primary">Show</a>
+										<a asp-controller="minuteservice" asp-action="edit" asp-route-id="@minuteservice.Id" class="btn btn-primary">Edit</a>
+										<button type="submit" class="btn btn-danger"
+												onclick="return confirm('Are you sure you want to delete service @minuteservice.Name')">
+											Delete
+										</button>
+									</div>
+								</form>
+							</td>
+						</tr>
+						}
+					</tbody>
+				</table>
+				<a class="btn btn-success mb-2" asp-controller="minuteservice" asp-action="Add">Add minute service</a>
+			</div>
+		</div>
+	</div>

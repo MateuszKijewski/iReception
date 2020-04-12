@@ -1,0 +1,46 @@
+﻿@model GetMinuteServiceDto
+@{
+	ViewBag.Title = "Show minute service";
+}
+
+<h1>Service details</h1>
+<div class="row">
+	<div class="col-md-12">
+		<div class="card mb-2"> 			
+			<div class="card-body">
+				<h5 class="card-title">
+					<label asp-for="Name"></label>
+				</h5>
+				<p class="card-text">@Model.Name</p>
+				<hr />
+				<h5 class="card-title">
+					<label asp-for="Description"></label>
+				</h5>
+				<p class="card-text">@Model.Description</p>
+				<h5 class="card-title">
+					<label asp-for="@Model.PricePerMinute"></label>
+				</h5>
+				<p class="card-text">@Model.PricePerMinute</p>
+				<h5 class="card-title">
+					<label>Rental time range</label>
+				</h5>
+				<p class="card-text">@Model.MinTime - @Model.MaxTime minutes</p>
+				<div class="form-check-inline mt-3">
+					@if (Model.IsAvailable)
+					{
+						<input asp-for="IsAvailable " disabled="disabled" class="form-check-input" type="checkbox" id="inlineCheckbox1" checked="checked" />
+					}
+					else
+					{
+						<input asp-for="IsAvailable " disabled="disabled" class="form-check-input" type="checkbox" id="inlineCheckbox1" />
+					}
+					<span asp-validation-for="IsAvailable" class="text-danger"></span>
+					<label class="form-check-label" for="inlineCheckbox1">Available</label>
+				</div>
+			</div>
+		</div>
+		<a asp-controller="minuteservice" asp-action="list" class="btn btn-info">Return to list</a>
+		<a asp-controller="minuteservice" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+	</div>
+	
+</div>

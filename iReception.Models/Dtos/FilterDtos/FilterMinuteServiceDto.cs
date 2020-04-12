@@ -19,10 +19,8 @@ namespace iReception.Models.Dtos.FilterDtos
         public decimal? MinPricePerMinute { get; set; }
         public decimal? MaxPricePerMinute { get; set; }
 
-        [Display(Name = "Minimal rental time")]
+        [Display(Name = "Rental time")]
         public int? MinTime { get; set; }
-
-        [Display(Name = "Maximal rental time")]
         public int? MaxTime { get; set; }
 
         [Display(Name = "Available")]

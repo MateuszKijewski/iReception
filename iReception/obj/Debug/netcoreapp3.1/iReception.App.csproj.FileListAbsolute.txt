@@ -101,3 +101,11 @@ G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Vi
 G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Room\List.cshtml.g.cs
 G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Room\Show.cshtml.g.cs
 G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Room\listOffer.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Service\Add.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Service\Edit.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Service\List.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\Service\Show.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\MinuteService\Add.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\MinuteService\Edit.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\MinuteService\List.cshtml.g.cs
+G:\Programowanie\Projects\iReception\iReception\obj\Debug\netcoreapp3.1\Razor\Views\MinuteService\Show.cshtml.g.cs
