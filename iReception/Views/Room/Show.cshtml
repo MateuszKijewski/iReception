@@ -1,11 +1,11 @@
 ﻿@model GetRoomDto
 @{
-	ViewBag.Title = "Show room";
+	ViewBag.Title = "Show room";	
 }
 
 <h1>Room details</h1>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-8">
 		<div class="card mb-2">
 			<div class="card-header">Room info</div>
 			<div class="card-body">
@@ -89,6 +89,5 @@
 		</div>
 		<a asp-controller="room" asp-action="list" class="btn btn-info">Return to list</a>
 		<a asp-controller="room" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
-	</div>
-	
+	</div>		
 </div>

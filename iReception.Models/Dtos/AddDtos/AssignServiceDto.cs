@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace iReception.Models.Entities
+namespace iReception.Models.Dtos.AddDtos
 {
-    public class RoomToService
+    public class AssignServiceDto
     {
         public int RoomId { get; set; }
-        public Room Room { get; set; }
         public int ServiceId { get; set; }
-        public Service Service { get; set; }     
     }
 }

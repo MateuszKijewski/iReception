@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using iReception.DataAccess;
 
 namespace iReception.DataAccess.Migrations
 {
     [DbContext(typeof(iReceptionDbContext))]
-    partial class iReceptionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200414232734_ManyToMany-Relations-Tweak")]
+    partial class ManyToManyRelationsTweak
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

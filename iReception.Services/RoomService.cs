@@ -18,14 +18,20 @@ namespace iReception.Services
         private readonly IRoomConverter _converter;
         private readonly IRoomRepository _repository;
         private readonly IBuildingRepository _buildingRepository;
+        private readonly IRoomToServiceRepository _roomToServiceRepository;
+        private readonly IServiceService _serviceService;
 
         public RoomService(IRoomConverter converter, 
                         IRoomRepository repository,
-                        IBuildingRepository buildingRepository)
+                        IBuildingRepository buildingRepository,
+                        IRoomToServiceRepository roomToServiceRepository,
+                        IServiceService serviceService)
         {
             _converter = converter;
             _repository = repository;
             _buildingRepository = buildingRepository;
+            _roomToServiceRepository = roomToServiceRepository;
+            _serviceService = serviceService;
         }
 
         public async Task<int> AddRoomAsync(AddRoomDto addRoomDto)
@@ -66,5 +72,41 @@ namespace iReception.Services
             return await _repository.UpdateAsync(id, _converter.SetRoomDtoToRoom(setRoomDto));
         }
 
+        /* Services methods */
+
+        public async Task<int> AssignServicesAsync(int roomId, int[] serviceIds)
+        {
+            var serviceAssignments = new List<AssignServiceDto>();
+            if (serviceIds != null)
+            {
+                foreach (var id in serviceIds)
+                {
+                    var serviceAssignment = new AssignServiceDto
+                    {
+                        RoomId = roomId,
+                        ServiceId = id
+                    };
+                    serviceAssignments.Add(serviceAssignment);
+                }
+                return await _roomToServiceRepository.AssignAsync(serviceAssignments);
+            }
+            else
+            {
+                return await _roomToServiceRepository.AssignAsync(roomId);
+            }
+            
+        }
+
+        public async Task<IEnumerable<GetServiceDto>> ListAssignedServicesAsync(int roomId)
+        {
+            var assignedServicesIds = await _roomToServiceRepository.ListAssignedAsync(roomId);
+            List<GetServiceDto> assignedServices = new List<GetServiceDto>();
+
+            foreach(var id in assignedServicesIds)
+            {
+                assignedServices.Add(await _serviceService.GetServiceAsync(id));
+            }
+            return assignedServices;
+        }
     }
 }

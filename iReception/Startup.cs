@@ -54,12 +54,13 @@ namespace iReception
             services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<IMinuteServiceRepository, MinuteServiceRepository>();
             services.AddScoped<IServiceRepository, ServiceRepository>();
+            services.AddScoped<IRoomToServiceRepository, RoomToServiceRepository>();
             // Services
             services.AddScoped<IClientService, ClientService>();            
             services.AddScoped<IBuildingService, BuildingService>();
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IMinuteServiceService, MinuteServiceService>();
-            services.AddScoped<IServiceService, ServiceService>();
+            services.AddScoped<IServiceService, ServiceService>();            
 
             services.AddScoped<IUserService, UserService>();
             

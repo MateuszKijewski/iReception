@@ -8,6 +8,7 @@ using iReception.Models.Dtos.SetDtos;
 using iReception.Repository.Interfaces;
 using iReception.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,11 +18,18 @@ namespace iReception.App.Controllers
     {
         private readonly IRoomService _roomService;
         private readonly IBuildingService _buildingService;
+        private readonly IServiceService _serviceService;
+        private readonly IMinuteServiceService _minuteServiceService;
 
-        public RoomController(IRoomService roomService, IBuildingService buildingService)
+        public RoomController(IRoomService roomService,
+                            IBuildingService buildingService,
+                            IServiceService serviceService,
+                            IMinuteServiceService minuteServiceService)
         {
             _roomService = roomService;
             _buildingService = buildingService;
+            _serviceService = serviceService;
+            _minuteServiceService = minuteServiceService;
         }
 
         [HttpGet]
@@ -112,7 +120,7 @@ namespace iReception.App.Controllers
         {
             try
             {
-                var room = await _roomService.GetRoomAsync(id);
+                var room = await _roomService.GetRoomAsync(id);                
                 return View(room);
             }
             catch (Exception e)
@@ -133,6 +141,26 @@ namespace iReception.App.Controllers
         {
             try
             {
+                var services = await _serviceService.ListServiceAsync();
+                var minuteServices = await _minuteServiceService.ListMinuteServicesAsync();                               
+                var assignedServicesIds = (await _roomService.ListAssignedServicesAsync(id)).Select(s => s.Id).ToArray();
+
+                var serviceSelect = new MultiSelectList(services, "Id", "Name");
+                var minuteServiceSelect = new MultiSelectList(minuteServices, "Id", "Name");
+
+                foreach(var option in serviceSelect)
+                {
+                    int? selectedOptionId = assignedServicesIds.FirstOrDefault(asi => asi.ToString() == option.Value);
+                    if (selectedOptionId != 0)
+                    {
+                        option.Selected = true;
+                    }                    
+                }                
+
+                ViewBag.Services = serviceSelect;
+                ViewBag.MinuteServices = minuteServiceSelect;
+
+
                 var buildings = await _buildingService.ListBuildingsAsync();
                 var model = new SetRoomDto();
                 model.Buildings = buildings;
@@ -204,6 +232,13 @@ namespace iReception.App.Controllers
                 }
                 throw;
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AssignServices(RoomServicesDto roomServicesDto)
+        {           
+            await _roomService.AssignServicesAsync(roomServicesDto.RoomId, roomServicesDto.AssignedIds);
+            return RedirectToAction("edit", "room", new { id = roomServicesDto.RoomId });
         }
     }
 }

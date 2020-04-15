@@ -17,13 +17,15 @@
 			building.Selected = true;
 		}
 	}
+	
+
 	ViewBag.Standards = standards;
 	ViewBag.Buildings = buildings;
 }
 
 <h1>update room</h1>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-9">
 		<form enctype="multipart/form-data" method="post">
 			<div asp-validation-summary="All" class="text-danger"></div>
 			<div class="card mb-2">
@@ -129,6 +131,25 @@
 			<a asp-controller="room" asp-action="show" asp-route-id="@ViewBag.Room.Id" class="btn btn-info">Return to room</a>
 			<button type="submit" class="btn btn-primary">Update room</button>
 		</form>
+	</div>
+	<div class="col-md-3 mt-3">
+		<div class="card mb-2">
+			<div class="card-header">Assign services</div>
+			<div class="card-body">
+				<h5 class="card-title">Normal services</h5>
+				<form asp-controller="Room" asp-action="AssignServices" method="post">
+					<input name="RoomId" type="hidden" value="@ViewBag.Room.Id" />
+					@Html.ListBox("AssignedIds", (MultiSelectList)ViewBag.Services, new { size = 8 })<br />
+					<button type="submit" class="btn btn-secondary mt-1">Assign</button>
+				</form>				
+				<h5 class="card-title mt-4">Minute services</h5>
+				<form asp-controller="Room" asp-action="AssignMinuteServices" method="post">
+					<input type="hidden" value="@ViewBag.Room.Id" />
+					@Html.ListBox("AssignedIds", (MultiSelectList)ViewBag.MinuteServices, new { size = 8 })<br />
+					<button type="submit" class="btn btn-secondary mt-1">Assign</button>
+				</form>
+			</div>
+		</div>
 	</div>
 	@section Scripts {
 		<script>
