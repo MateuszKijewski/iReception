@@ -20,7 +20,7 @@ namespace iReception.Repository
             _db = db;
         }
 
-        public async Task<int> AssignAsync(IEnumerable<AssignServiceDto> assignServiceDtos)
+        public async Task<IEnumerable<int>> AssignAsync(IEnumerable<AssignServiceDto> assignServiceDtos)
         {
             var currentRelations = _db.RoomToServices.Where(rts => rts.RoomId == assignServiceDtos.ToList()[0].RoomId);
             _db.RemoveRange(currentRelations);
@@ -33,9 +33,11 @@ namespace iReception.Repository
                 };
 
                 await _db.RoomToServices.AddAsync(relation);
-                await _db.SaveChangesAsync();
+                
             }
-            return 1;
+            await _db.SaveChangesAsync();
+            var assignedServiceIds = assignServiceDtos.Select(asd => asd.ServiceId);
+            return assignedServiceIds;
         }
         public async Task<int> AssignAsync(int roomId)
         {

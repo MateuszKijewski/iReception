@@ -18,7 +18,7 @@ namespace iReception.Repository.Interfaces
         Task<List<GetRoomDto>> ListRoomsAsync();
         Task<int> UpdateRoomAsync(int id, SetRoomDto setRoomDto);
 
-        Task<int> AssignServicesAsync(int roomId, int[] serviceIds);
+        Task<IEnumerable<int>> AssignServicesAsync(int roomId, int[] serviceIds);
         Task<IEnumerable<GetServiceDto>> ListAssignedServicesAsync(int roomId);
     }
 }

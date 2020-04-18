@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iReception.Services", "iRec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iReception.DataAccess", "iReception.DataAccess\iReception.DataAccess.csproj", "{3CE7E904-023B-4273-85F8-A95CB3E2AB5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iReception.Repository", "iReception.Repository\iReception.Repository.csproj", "{CC667FBF-CE70-4BA2-A693-669B941369D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iReception.Repository", "iReception.Repository\iReception.Repository.csproj", "{CC667FBF-CE70-4BA2-A693-669B941369D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iReception.Test", "iReception.Test\iReception.Test.csproj", "{8FBB986A-0895-4D54-9AC9-D2B86DD065D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{CC667FBF-CE70-4BA2-A693-669B941369D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC667FBF-CE70-4BA2-A693-669B941369D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC667FBF-CE70-4BA2-A693-669B941369D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FBB986A-0895-4D54-9AC9-D2B86DD065D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBB986A-0895-4D54-9AC9-D2B86DD065D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBB986A-0895-4D54-9AC9-D2B86DD065D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBB986A-0895-4D54-9AC9-D2B86DD065D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -74,7 +74,7 @@ namespace iReception.Services
 
         /* Services methods */
 
-        public async Task<int> AssignServicesAsync(int roomId, int[] serviceIds)
+        public async Task<IEnumerable<int>> AssignServicesAsync(int roomId, int[] serviceIds)
         {
             var serviceAssignments = new List<AssignServiceDto>();
             if (serviceIds != null)
@@ -92,7 +92,7 @@ namespace iReception.Services
             }
             else
             {
-                return await _roomToServiceRepository.AssignAsync(roomId);
+                return new int[await _roomToServiceRepository.AssignAsync(roomId)];
             }
             
         }
