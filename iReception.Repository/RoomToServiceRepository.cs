@@ -20,32 +20,31 @@ namespace iReception.Repository
             _db = db;
         }
 
-        public async Task<IEnumerable<int>> AssignAsync(IEnumerable<AssignServiceDto> assignServiceDtos)
+        public async Task<int[]> AssignAsync(int roomId, int[] serviceIds)
         {
-            var currentRelations = _db.RoomToServices.Where(rts => rts.RoomId == assignServiceDtos.ToList()[0].RoomId);
+            var currentRelations = _db.RoomToServices.Where(rts => rts.RoomId == roomId);
             _db.RemoveRange(currentRelations);
-            foreach(var item in assignServiceDtos)
+            foreach(var serviceId in serviceIds)
             {
                 var relation = new RoomToService
                 {
-                    RoomId = item.RoomId,
-                    ServiceId = item.ServiceId
+                    RoomId = roomId,
+                    ServiceId = serviceId
                 };
 
                 await _db.RoomToServices.AddAsync(relation);
                 
             }
             await _db.SaveChangesAsync();
-            var assignedServiceIds = assignServiceDtos.Select(asd => asd.ServiceId);
-            return assignedServiceIds;
+            return serviceIds;
         }
-        public async Task<int> AssignAsync(int roomId)
+        public async Task<int> DeleteAsync(int roomId)
         {
             var currentRelations = _db.RoomToServices.Where(rts => rts.RoomId == roomId);
             _db.RemoveRange(currentRelations);            
             await _db.SaveChangesAsync();
             
-            return 1;
+            return roomId;
         }
 
         public async Task<int[]> ListAssignedAsync(int roomId)

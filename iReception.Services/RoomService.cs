@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.WebEncoders.Testing;
 
 namespace iReception.Services
 {
@@ -74,25 +75,16 @@ namespace iReception.Services
 
         /* Services methods */
 
-        public async Task<IEnumerable<int>> AssignServicesAsync(int roomId, int[] serviceIds)
+        public async Task<int[]> AssignServicesAsync(int roomId, int[] serviceIds)
         {
-            var serviceAssignments = new List<AssignServiceDto>();
+            //var serviceAssignments = new List<AssignServiceDto>();
             if (serviceIds != null)
             {
-                foreach (var id in serviceIds)
-                {
-                    var serviceAssignment = new AssignServiceDto
-                    {
-                        RoomId = roomId,
-                        ServiceId = id
-                    };
-                    serviceAssignments.Add(serviceAssignment);
-                }
-                return await _roomToServiceRepository.AssignAsync(serviceAssignments);
+                return await _roomToServiceRepository.AssignAsync(roomId, serviceIds);
             }
             else
             {
-                return new int[await _roomToServiceRepository.AssignAsync(roomId)];
+                return new int[]{ await _roomToServiceRepository.DeleteAsync(roomId) };
             }
             
         }

@@ -8,8 +8,8 @@ namespace iReception.Repository.Interfaces
 {
     public interface IRoomToServiceRepository
     {
-        Task<IEnumerable<int>> AssignAsync(IEnumerable<AssignServiceDto> assignServiceDtos);
-        Task<int> AssignAsync(int roomId);
+        Task<int[]> AssignAsync(int id, int[] serviceIds);
+        Task<int> DeleteAsync(int roomId);
         Task<int[]> ListAssignedAsync(int roomId);        
     }
 }

@@ -26,33 +26,77 @@ namespace iReception.Test.RoomTests
         [Fact]
         public async Task ShouldAssignServicesToRoomAndRemoveCurrentServices()
         {
-            // Arrange
+            //Arrange
             var context = new iReceptionDbContext(DbOptions);
             var repository = new RoomToServiceRepository(context);
 
-            var existingRtms = new RoomToService()
+            var existingServices = new RoomToService()
             {
-                RoomId = 18,
+                RoomId = 1,
                 ServiceId = 21
             };
-            await context.RoomToServices.AddAsync(existingRtms);
-
-            var assignServiceDtos = new List<AssignServiceDto>
-            {
-                new AssignServiceDto {RoomId = 1, ServiceId = 2},
-                new AssignServiceDto {RoomId = 1, ServiceId = 3}
-            };
-            // Act
-            var actual = await repository.AssignAsync(assignServiceDtos);
-            var expected = assignServiceDtos.Select(asd => asd.ServiceId);
+            await context.RoomToServices.AddAsync(existingServices);
             await context.SaveChangesAsync();
 
+            int roomId = 1;
+            int[] serviceIds = {2, 3, 4};
+
+            //Act
+            var actual = await repository.AssignAsync(roomId, serviceIds);
+            var expected = serviceIds;
+            var deletedRecord = await context.RoomToServices.FindAsync(1, 21);
 
 
-            // Assert
-            Assert.Equal(expected, actual);
-            (await context.RoomToServices.FindAsync(18, 21)).Should().BeNull();
+            //Assert
+            actual.Should().BeEquivalentTo(expected);
+            deletedRecord.Should().BeNull();
 
+        }
+
+        [Fact]
+        public async Task ShouldClearExistingConnections()
+        {
+            //Arrange
+            var context = new iReceptionDbContext(DbOptions);
+            var repository = new RoomToServiceRepository(context);
+
+            var existingServices = new RoomToService()
+            {
+                RoomId = 1,
+                ServiceId = 21
+            };
+            await context.RoomToServices.AddAsync(existingServices);
+            await context.SaveChangesAsync();
+
+            //Act
+            await repository.DeleteAsync(1);
+            var actual = context.RoomToServices.ToList();
+
+            //Assert
+            actual.Should().BeEmpty();
+        }
+
+        [Fact]
+        public async Task ShouldListServicesAssignedToRoom()
+        {
+            //Arrange
+            var context = new iReceptionDbContext(DbOptions);
+            var repository = new RoomToServiceRepository(context);
+
+            List<RoomToService> existingServices = new List<RoomToService>
+            {
+                new RoomToService() {RoomId = 1, ServiceId = 2},
+                new RoomToService() {RoomId = 1, ServiceId = 3}
+            };
+            await context.RoomToServices.AddRangeAsync(existingServices);
+            await context.SaveChangesAsync();
+
+            //Act
+            var actual = await repository.ListAssignedAsync(1);
+            var expected = existingServices.Select(es => es.ServiceId);
+
+            //Assert
+            actual.Should().BeEquivalentTo(expected);
         }
     }
 }

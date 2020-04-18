@@ -176,3 +176,8 @@ G:\Programowanie\Projects\iReception\iReception.Test\bin\Debug\netcoreapp3.1\iRe
 G:\Programowanie\Projects\iReception\iReception.Test\bin\Debug\netcoreapp3.1\iReception.Repository.pdb
 G:\Programowanie\Projects\iReception\iReception.Test\obj\Debug\netcoreapp3.1\iReception.Test.dll
 G:\Programowanie\Projects\iReception\iReception.Test\obj\Debug\netcoreapp3.1\iReception.Test.pdb
+G:\Programowanie\Projects\iReception\iReception.Test\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.dll
+G:\Programowanie\Projects\iReception\iReception.Test\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Cookies.dll
+G:\Programowanie\Projects\iReception\iReception.Test\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.dll
+G:\Programowanie\Projects\iReception\iReception.Test\bin\Debug\netcoreapp3.1\iReception.Services.dll
+G:\Programowanie\Projects\iReception\iReception.Test\bin\Debug\netcoreapp3.1\iReception.Services.pdb

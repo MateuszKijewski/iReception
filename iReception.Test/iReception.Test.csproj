@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\iReception.DataAccess\iReception.DataAccess.csproj" />
     <ProjectReference Include="..\iReception.Repository\iReception.Repository.csproj" />
+    <ProjectReference Include="..\iReception.Services\iReception.Services.csproj" />
   </ItemGroup>
 
 </Project>
