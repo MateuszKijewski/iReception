@@ -96,7 +96,7 @@ namespace iReception.Services
         public async Task<IEnumerable<GetServiceDto>> ListAssignedServicesAsync(int roomId)
         {
             var assignedServicesIds = await _roomToServiceRepository.ListAssignedAsync(roomId);
-            List<GetServiceDto> assignedServices = new List<GetServiceDto>();
+            var assignedServices = new List<GetServiceDto>();
 
             foreach(var id in assignedServicesIds)
             {

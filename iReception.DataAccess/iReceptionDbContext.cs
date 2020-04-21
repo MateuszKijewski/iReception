@@ -15,19 +15,41 @@ namespace iReception.DataAccess
         }
 
         public DbSet<Client> Clients { get; set; }
-        public DbSet<Department> Departments { get; set; }
         public DbSet<Room> Rooms { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Worker> Workers { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<MinuteService> MinuteServices { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<RoomToMinuteService> RoomToMinuteServices { get; set; }
         public DbSet<RoomToService> RoomToServices { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<MinuteServiceToReservation> MinuteServicesToReservation { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<Reservation>()
+                .HasOne(r => r.Room)
+                .WithMany(r => r.Reservations)
+                .HasForeignKey(r => r.RoomId);
+            builder.Entity<Reservation>()
+                .HasOne(r => r.Client)
+                .WithMany(c => c.Reservations)
+                .HasForeignKey(r => r.ClientId);
+
+            builder.Entity<MinuteServiceToReservation>()
+                .HasKey(mstr => new {mstr.ReservationId, mstr.MinuteServiceId});
+            builder.Entity<MinuteServiceToReservation>()
+                .HasOne(mstr => mstr.Reservation)
+                .WithMany(r => r.MinuteServicesReserved)
+                .HasForeignKey(mstr => mstr.ReservationId);
+            builder.Entity<MinuteServiceToReservation>()
+                .HasOne(mstr => mstr.MinuteService)
+                .WithMany(ms => ms.MinuteServiceToReservations)
+                .HasForeignKey(mstr => mstr.MinuteServiceId);
+                
 
             builder.Entity<RoomToMinuteService>()
                 .HasKey(rtms => new { rtms.RoomId, rtms.MinuteServiceId });
@@ -64,20 +86,6 @@ namespace iReception.DataAccess
                 .HasForeignKey<Room>(r => r.ClientId)
                 .IsRequired(false);
 
-            builder.Entity<Transaction>()
-                .HasOne(t => t.Worker)
-                .WithMany(w => w.Transactions)
-                .HasForeignKey(t => t.WorkerId);
-
-            builder.Entity<Transaction>()
-                .HasOne(t => t.Client)
-                .WithMany(c => c.Transactions)
-                .HasForeignKey(t => t.ClientId);
-
-            builder.Entity<Worker>()
-                .HasOne(w => w.Department)
-                .WithMany(d => d.Workers)
-                .HasForeignKey(w => w.DepartmentId);      
         }
     }
 }

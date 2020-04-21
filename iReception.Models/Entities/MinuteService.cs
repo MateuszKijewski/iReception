@@ -15,6 +15,7 @@ namespace iReception.Models.Entities
 
         /* Relations */
         public IEnumerable<RoomToMinuteService> RoomToMinuteServices { get; set; }
+        public IEnumerable<MinuteServiceToReservation> MinuteServiceToReservations { get; set; }
 
         /* Flags */
         public bool IsDeleted { get; set; }

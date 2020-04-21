@@ -15,10 +15,6 @@ namespace iReception.Models.Entities
         public string Email { get; set; }
 
         /* Relations */
-        public int DepartmentId { get; set; }
-        public Department Department { get; set; }
-
-        public IEnumerable<Transaction> Transactions { get; set; }
 
         /* Flags */
         public bool IsDeleted { get; set; }

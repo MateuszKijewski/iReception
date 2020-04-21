@@ -42,8 +42,7 @@ namespace iReception.Models.Converters
                 IdDocumentNumber = client.IdDocumentNumber,
 
                 Room = client.Room,
-                Transactions = client.Transactions,  
-                
+
                 IsDeleted = client.IsDeleted
             };
         }

@@ -16,13 +16,14 @@ namespace iReception.Models.Entities
 
         /* Relations */
         public int? ClientId { get; set; }
-        public Client? Client { get; set; }
+        public Client Client { get; set; }
 
         public int BuildingId { get; set; }
         public Building Building { get; set; }
 
         public IEnumerable<RoomToMinuteService> RoomToMinuteServices { get; set; }
         public IEnumerable<RoomToService> RoomToServices { get; set; }
+        public IEnumerable<Reservation> Reservations { get; set; }
 
         /* Flags */
         public bool IsAvailable { get; set; }

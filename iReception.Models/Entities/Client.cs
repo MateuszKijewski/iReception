@@ -22,7 +22,7 @@ namespace iReception.Models.Entities
         /* Relations */
         public Room Room { get; set; }
 
-        public IEnumerable<Transaction> Transactions { get; set; }
+        public IEnumerable<Reservation> Reservations { get; set; }
 
         /* Flags */
         public bool IsDeleted { get; set; }

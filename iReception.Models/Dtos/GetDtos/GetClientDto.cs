@@ -29,8 +29,7 @@ namespace iReception.Models.Dtos.GetDtos
         public string IdDocumentNumber { get; set; }
 
         /* Related objects */
-        public Room? Room { get; set; }
-        public IEnumerable<Transaction> Transactions { get; set; }
+        public Room Room { get; set; }
 
         /* Flags */
         public bool IsDeleted { get; set; }

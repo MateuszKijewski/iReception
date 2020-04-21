@@ -193,7 +193,8 @@ namespace iReception.Test.RoomTests
             actual.Should().BeEquivalentTo(expected);
         }
 
-        public async Task ShoudListAssignedMinuteServices()
+        [Fact] 
+        public async Task ShouldListAssignedMinuteServices()
         {
             //Arrange
             var rtmsRepositoryMock = new Mock<IRoomToMinuteServiceRepository>();
@@ -238,7 +239,7 @@ namespace iReception.Test.RoomTests
             int roomId = 1;
 
             //Act
-            var actual = await roomService.ListAssignedServicesAsync(roomId);
+            var actual = await roomService.ListAssignedMinuteServicesAsync(roomId);
             var expected = new List<GetMinuteServiceDto>
             {
                 new GetMinuteServiceDto()
