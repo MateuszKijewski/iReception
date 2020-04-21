@@ -5,7 +5,7 @@
 
 <h1>Room details</h1>
 <div class="row">
-	<div class="col-md-8">
+	<div class="col-md-9">
 		<div class="card mb-2">
 			<div class="card-header">Room info</div>
 			<div class="card-body">
@@ -89,5 +89,26 @@
 		</div>
 		<a asp-controller="room" asp-action="list" class="btn btn-info">Return to list</a>
 		<a asp-controller="room" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
-	</div>		
+	</div>
+	<div class="col-md-3">
+		<div class="card mb-2">
+			<div class="card-header">Assigned services</div>
+			<div class="card-body">
+				<h5 class="card-title">Normal services</h5>
+				<ul>
+					@foreach (var service in ViewBag.Services)
+					{
+						<li>@service.Name</li>
+					}
+				</ul>
+				<h5 class="card-title mt-4">Minute services</h5>
+				<ul>
+					@foreach (var minuteService in ViewBag.MinuteServices)
+					{
+						<li>@minuteService.Name</li>
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>

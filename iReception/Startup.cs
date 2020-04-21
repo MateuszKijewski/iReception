@@ -55,6 +55,7 @@ namespace iReception
             services.AddScoped<IMinuteServiceRepository, MinuteServiceRepository>();
             services.AddScoped<IServiceRepository, ServiceRepository>();
             services.AddScoped<IRoomToServiceRepository, RoomToServiceRepository>();
+            services.AddScoped<IRoomToMinuteServiceRepository, RoomToMinuteServiceRepository>();
             // Services
             services.AddScoped<IClientService, ClientService>();            
             services.AddScoped<IBuildingService, BuildingService>();

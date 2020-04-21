@@ -53,34 +53,34 @@
 								<button type="submit" class="btn btn-info">Search</button>
 								<a asp-controller="building" asp-action="list" class="btn btn-info">Reset filters</a>
 							</div>
-						</div></div>
+						</div>
+					</div>
 				</form>
-			</div>
 			</div>
 			<div class="col-9 mt-3">
 				<table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%" style="border-top: none">
 					<thead>
-						<tr>
-							<th class="th-sm">
-								Id
-							</th>
-							<th class="th-sm">
-								Address
-							</th>
-							<th class="th-sm">
-								Short name
-							</th>
-							<th class="th-sm">
-								Available
-							</th>
-							<th class="th-sm">
-								Actions
-							</th>
-						</tr>
+					<tr>
+						<th class="th-sm">
+							Id
+						</th>
+						<th class="th-sm">
+							Address
+						</th>
+						<th class="th-sm">
+							Short name
+						</th>
+						<th class="th-sm">
+							Available
+						</th>
+						<th class="th-sm">
+							Actions
+						</th>
+					</tr>
 					</thead>
 					<tbody>
-						@foreach (var building in ViewBag.Buildings)
-						{
+					@foreach (var building in ViewBag.Buildings)
+					{
 						<tr>
 							<td>@building.Id</td>
 							<td>@building.Address</td>
@@ -99,16 +99,18 @@
 										<a asp-controller="building" asp-action="Show" asp-route-id="@building.Id" class="btn btn-primary">Show</a>
 										<a asp-controller="building" asp-action="edit" asp-route-id="@building.Id" class="btn btn-primary">Edit</a>
 										<button type="submit" class="btn btn-danger"
-												onclick="return confirm('Are you sure you want to delete building @building.ShortName and all its rooms?')">
+										        onclick="return confirm('Are you sure you want to delete building @building.ShortName and all its rooms?')">
 											Delete
 										</button>
 									</div>
 								</form>
 							</td>
 						</tr>
-						}
+					}
 					</tbody>
 				</table>
 				<a class="btn btn-success mb-2" asp-controller="building" asp-action="Add">Add building</a>
 			</div>
 		</div>
+			</div>
+			

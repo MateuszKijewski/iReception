@@ -1,41 +1,39 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Threading.Tasks;
-using iReception.DataAccess;
-using iReception.Models.Dtos.AddDtos;
-using iReception.Models.Entities;
-using Xunit;
-using iReception.Repository;
-using Microsoft.VisualStudio.TestPlatform.Utilities;
-using Xunit.Abstractions;
 using FluentAssertions;
+using iReception.DataAccess;
+using iReception.Models.Entities;
+using iReception.Repository;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace iReception.Test.RoomTests
 {
-    public class RoomToServiceRepositoryTests : InMemoryDatabaseFixture
+    public class RoomToMinuteServiceRepositoryTests : InMemoryDatabaseFixture
     {
         private readonly ITestOutputHelper _output;
 
-        public RoomToServiceRepositoryTests(ITestOutputHelper output)
+        public RoomToMinuteServiceRepositoryTests(ITestOutputHelper output)
         {
             _output = output;
         }
 
         [Fact]
-        public async Task ShouldAssignServicesToRoomAndRemoveCurrentConnections()
+        public async Task ShouldAssignMinuteServicesToRoomAndRemoveCurrentConnections()
         {
             //Arrange
             var context = new iReceptionDbContext(DbOptions);
-            var repository = new RoomToServiceRepository(context);
+            var repository = new RoomToMinuteServiceRepository(context);
 
-            var existingServices = new RoomToService()
+            var existingMinuteServices = new RoomToMinuteService()
             {
                 RoomId = 1,
-                ServiceId = 21
+                MinuteServiceId = 21
             };
-            await context.RoomToServices.AddAsync(existingServices);
+            await context.RoomToMinuteServices.AddAsync((existingMinuteServices));
             await context.SaveChangesAsync();
 
             int roomId = 1;
@@ -46,11 +44,9 @@ namespace iReception.Test.RoomTests
             var expected = serviceIds;
             var deletedRecord = await context.RoomToServices.FindAsync(1, 21);
 
-
             //Assert
-            actual.Should().BeEquivalentTo(expected);
+            actual.Should().BeEquivalentTo(serviceIds);
             deletedRecord.Should().BeNull();
-
         }
 
         [Fact]
@@ -58,45 +54,46 @@ namespace iReception.Test.RoomTests
         {
             //Arrange
             var context = new iReceptionDbContext(DbOptions);
-            var repository = new RoomToServiceRepository(context);
+            var repository = new RoomToMinuteServiceRepository(context);
 
-            var existingServices = new RoomToService()
+            var existingMinuteService = new RoomToMinuteService
             {
                 RoomId = 1,
-                ServiceId = 21
+                MinuteServiceId = 21
             };
-            await context.RoomToServices.AddAsync(existingServices);
+            await context.RoomToMinuteServices.AddAsync(existingMinuteService);
             await context.SaveChangesAsync();
 
             //Act
             await repository.DeleteAsync(1);
-            var actual = context.RoomToServices.ToList();
+            var actual = context.RoomToMinuteServices.ToList();
 
             //Assert
             actual.Should().BeEmpty();
         }
 
         [Fact]
-        public async Task ShouldListServicesAssignedToRoom()
+        public async Task ShouldListAllExistingConnections()
         {
             //Arrange
             var context = new iReceptionDbContext(DbOptions);
-            var repository = new RoomToServiceRepository(context);
+            var repository = new RoomToMinuteServiceRepository(context);
 
-            List<RoomToService> existingServices = new List<RoomToService>
+            var existingMinuteServices = new List<RoomToMinuteService>
             {
-                new RoomToService() {RoomId = 1, ServiceId = 2},
-                new RoomToService() {RoomId = 1, ServiceId = 3}
+                new RoomToMinuteService{RoomId = 1, MinuteServiceId = 2},
+                new RoomToMinuteService{RoomId = 1, MinuteServiceId = 3}
             };
-            await context.RoomToServices.AddRangeAsync(existingServices);
+            await context.RoomToMinuteServices.AddRangeAsync(existingMinuteServices);
             await context.SaveChangesAsync();
 
             //Act
             var actual = await repository.ListAssignedAsync(1);
-            var expected = existingServices.Select(es => es.ServiceId);
+            var expected = existingMinuteServices.Select(ms => ms.MinuteServiceId);
 
             //Assert
             actual.Should().BeEquivalentTo(expected);
+
         }
     }
 }

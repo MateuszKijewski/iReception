@@ -144,7 +144,7 @@
 				</form>				
 				<h5 class="card-title mt-4">Minute services</h5>
 				<form asp-controller="Room" asp-action="AssignMinuteServices" method="post">
-					<input type="hidden" value="@ViewBag.Room.Id" />
+					<input name="RoomId" type="hidden" value="@ViewBag.Room.Id" />
 					@Html.ListBox("AssignedIds", (MultiSelectList)ViewBag.MinuteServices, new { size = 8 })<br />
 					<button type="submit" class="btn btn-secondary mt-1">Assign</button>
 				</form>

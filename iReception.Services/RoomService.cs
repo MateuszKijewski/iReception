@@ -20,19 +20,25 @@ namespace iReception.Services
         private readonly IRoomRepository _repository;
         private readonly IBuildingRepository _buildingRepository;
         private readonly IRoomToServiceRepository _roomToServiceRepository;
+        private readonly IRoomToMinuteServiceRepository _roomToMinuteServiceRepository;
         private readonly IServiceService _serviceService;
+        private readonly IMinuteServiceService _minuteServiceService;
 
         public RoomService(IRoomConverter converter, 
                         IRoomRepository repository,
                         IBuildingRepository buildingRepository,
                         IRoomToServiceRepository roomToServiceRepository,
-                        IServiceService serviceService)
+                        IRoomToMinuteServiceRepository roomToMinuteServiceRepository,
+                        IServiceService serviceService, 
+                        IMinuteServiceService minuteServiceService)
         {
             _converter = converter;
             _repository = repository;
             _buildingRepository = buildingRepository;
             _roomToServiceRepository = roomToServiceRepository;
+            _roomToMinuteServiceRepository = roomToMinuteServiceRepository;
             _serviceService = serviceService;
+            _minuteServiceService = minuteServiceService;
         }
 
         public async Task<int> AddRoomAsync(AddRoomDto addRoomDto)
@@ -82,11 +88,9 @@ namespace iReception.Services
             {
                 return await _roomToServiceRepository.AssignAsync(roomId, serviceIds);
             }
-            else
-            {
-                return new int[]{ await _roomToServiceRepository.DeleteAsync(roomId) };
-            }
-            
+
+            return new[]{ await _roomToServiceRepository.DeleteAsync(roomId) };
+
         }
 
         public async Task<IEnumerable<GetServiceDto>> ListAssignedServicesAsync(int roomId)
@@ -99,6 +103,29 @@ namespace iReception.Services
                 assignedServices.Add(await _serviceService.GetServiceAsync(id));
             }
             return assignedServices;
+        }
+
+        public async Task<int[]> AssignMinuteServicesAsync(int roomId, int[] minuteServiceIds)
+        {
+            if (minuteServiceIds != null)
+            {
+                return await _roomToMinuteServiceRepository.AssignAsync(roomId, minuteServiceIds);
+            }
+
+            return new[] {await _roomToMinuteServiceRepository.DeleteAsync(roomId)};
+        }
+
+        public async Task<IEnumerable<GetMinuteServiceDto>> ListAssignedMinuteServicesAsync(int roomId)
+        {
+            var assignedMinuteServicesIds = await _roomToMinuteServiceRepository.ListAssignedAsync(roomId);
+            List<GetMinuteServiceDto> assignedMinuteServices = new List<GetMinuteServiceDto>();
+
+            foreach (var id in assignedMinuteServicesIds)
+            {
+                assignedMinuteServices.Add(await _minuteServiceService.GetMinuteServiceAsync(id));
+            }
+
+            return assignedMinuteServices;
         }
     }
 }

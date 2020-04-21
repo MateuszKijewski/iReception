@@ -32,12 +32,14 @@ namespace iReception.Test.RoomTests
             var repositoryMock = new Mock<IRoomToServiceRepository>();
             repositoryMock
                 .Setup(r => r.AssignAsync(It.IsAny<int>(), It.IsAny<int[]>()))
-                .ReturnsAsync(new int[] {1, 2});
+                .ReturnsAsync(new[] {1, 2});
             var service = new RoomService(
                 null,
                 null,
                 null,
-                roomToServiceRepository:repositoryMock.Object,
+                repositoryMock.Object,
+                null,
+                null,
                 null
                 );
 
@@ -49,6 +51,33 @@ namespace iReception.Test.RoomTests
 
             //Assert
             actual.Should().Equal(serviceIds);
+        }
+
+        [Fact]
+        public async Task ShouldAssignMinuteServicesToRoom()
+        {
+            //Arrange
+            var repositoryMock = new Mock<IRoomToMinuteServiceRepository>();
+            repositoryMock
+                .Setup(r => r.AssignAsync(It.IsAny<int>(), It.IsAny<int[]>()))
+                .ReturnsAsync(new[] {1,2});
+            var service = new RoomService(
+                null,
+                null,
+                null,
+                null,
+                repositoryMock.Object,
+                null,
+                null
+                );
+            var roomId = 1;
+            int[] minuteServiceIds = {1, 2};
+
+            //Act
+            var actual = await service.AssignMinuteServicesAsync(roomId, minuteServiceIds);
+
+            //Assert
+            actual.Should().Equal(minuteServiceIds);
         }
 
         [Fact]
@@ -65,6 +94,8 @@ namespace iReception.Test.RoomTests
                 null,
                 null,
                 roomToServiceRepository: repositoryMock.Object,
+                null,
+                null,
                 null
             );
             int roomId = 1;
@@ -76,11 +107,36 @@ namespace iReception.Test.RoomTests
         }
 
         [Fact]
+        public async Task ShouldRemoveCurrentMinuteServices()
+        {
+            //Arrange
+            var repositoryMock = new Mock<IRoomToMinuteServiceRepository>();
+            repositoryMock
+                .Setup(r => r.DeleteAsync(It.IsAny<int>()))
+                .ReturnsAsync(1);
+            var service = new RoomService(
+                null,
+                null,
+                null,
+                null,
+                repositoryMock.Object,
+                null,
+                null
+                );
+
+            var roomId = 1;
+
+            //Act
+            var actual = await service.AssignMinuteServicesAsync(roomId, null);
+
+            //Assert
+            Assert.Equal(1, actual[0]);
+        }
+
+        [Fact]
         public async Task ShouldListAssignedServices()
         {
             //Arrange
-            var context = new iReceptionDbContext(DbOptions);
-
             var rtsRepositoryMock = new Mock<IRoomToServiceRepository>();
             rtsRepositoryMock
                 .Setup(r => r.ListAssignedAsync(It.IsAny<int>()))
@@ -115,8 +171,10 @@ namespace iReception.Test.RoomTests
                 null,
                 null,
                 null,
-                roomToServiceRepository: rtsRepositoryMock.Object,
-                serviceService
+                rtsRepositoryMock.Object,
+                null,
+                serviceService,
+                null
             );
             
             int roomId = 1;
@@ -133,6 +191,71 @@ namespace iReception.Test.RoomTests
 
             //Assert
             actual.Should().BeEquivalentTo(expected);
+        }
+
+        public async Task ShoudListAssignedMinuteServices()
+        {
+            //Arrange
+            var rtmsRepositoryMock = new Mock<IRoomToMinuteServiceRepository>();
+            rtmsRepositoryMock
+                .Setup(r => r.ListAssignedAsync(It.IsAny<int>()))
+                .ReturnsAsync(new[] {1, 2});
+            var minuteServiceRepositoryMock = new Mock<IMinuteServiceRepository>();
+            minuteServiceRepositoryMock
+                .Setup(r => r.GetAsync(It.IsAny<int>()))
+                .ReturnsAsync(new MinuteService()
+                {
+                    Id = 1,
+                    Description = "test",
+                    IsAvailable = true,
+                    Name = "test"
+                });
+            var minuteServiceConverterMock = new Mock<IMinuteServiceConverter>();
+            minuteServiceConverterMock
+                .Setup(c => c.MinuteServiceToGetMinuteServiceDto(It.IsAny<MinuteService>()))
+                .Returns(new GetMinuteServiceDto
+                {
+                    Id = 1,
+                    Name = "test",
+                    Description = "test",
+                    IsAvailable = true
+                });
+
+
+            var minuteServiceService = new MinuteServiceService(
+                minuteServiceConverterMock.Object,
+                minuteServiceRepositoryMock.Object);
+            var roomService = new RoomService(
+                null,
+                null,
+                null,
+                null,
+                rtmsRepositoryMock.Object,
+                null,
+                minuteServiceService
+            );
+
+            int roomId = 1;
+
+            //Act
+            var actual = await roomService.ListAssignedServicesAsync(roomId);
+            var expected = new List<GetMinuteServiceDto>
+            {
+                new GetMinuteServiceDto()
+                    {Id = 1, Name = "test", Description = "test", IsAvailable = true},
+                new GetMinuteServiceDto()
+                    {Id = 1, Name = "test", Description = "test", IsAvailable = true}
+            };
+
+            //Assert
+            actual.Should().BeEquivalentTo(expected);
+
+
+
+            //Act
+
+
+            //Assert
         }
     }
 }

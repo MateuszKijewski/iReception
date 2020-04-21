@@ -120,6 +120,12 @@ namespace iReception.App.Controllers
         {
             try
             {
+                var assignedServices = await _roomService.ListAssignedServicesAsync(id);
+                var assignedMinuteServices = await _roomService.ListAssignedMinuteServicesAsync(id);
+
+                ViewBag.Services = assignedServices;
+                ViewBag.MinuteServices = assignedMinuteServices;
+
                 var room = await _roomService.GetRoomAsync(id);                
                 return View(room);
             }
@@ -143,7 +149,14 @@ namespace iReception.App.Controllers
             {
                 var services = await _serviceService.ListServiceAsync();
                 var minuteServices = await _minuteServiceService.ListMinuteServicesAsync();                               
-                var assignedServicesIds = (await _roomService.ListAssignedServicesAsync(id)).Select(s => s.Id).ToArray();
+                var assignedServicesIds = 
+                    (await _roomService.ListAssignedServicesAsync(id))
+                    .Select(s => s.Id)
+                    .ToArray();
+                var assignedMinuteServicesids =
+                    (await _roomService.ListAssignedMinuteServicesAsync(id))
+                    .Select(s => s.Id)
+                    .ToArray();
 
                 var serviceSelect = new MultiSelectList(services, "Id", "Name");
                 var minuteServiceSelect = new MultiSelectList(minuteServices, "Id", "Name");
@@ -155,7 +168,15 @@ namespace iReception.App.Controllers
                     {
                         option.Selected = true;
                     }                    
-                }                
+                }
+                foreach (var option in minuteServiceSelect)
+                {
+                    int? selectedOptionId = assignedMinuteServicesids.FirstOrDefault(asi => asi.ToString() == option.Value);
+                    if (selectedOptionId != 0)
+                    {
+                        option.Selected = true;
+                    }
+                }
 
                 ViewBag.Services = serviceSelect;
                 ViewBag.MinuteServices = minuteServiceSelect;
@@ -240,5 +261,13 @@ namespace iReception.App.Controllers
             await _roomService.AssignServicesAsync(roomServicesDto.RoomId, roomServicesDto.AssignedIds);
             return RedirectToAction("edit", "room", new { id = roomServicesDto.RoomId });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AssignMinuteServices(RoomServicesDto roomServicesDto)
+        {
+            await _roomService.AssignMinuteServicesAsync(roomServicesDto.RoomId, roomServicesDto.AssignedIds);
+            return RedirectToAction("edit", "room", new {id = roomServicesDto.RoomId});
+        }
+
     }
 }
