@@ -6,11 +6,11 @@ namespace iReception.Models.Enums
 {
     public enum ReservationStatus
     {
-        New,
-        Approaching,
-        Today,
-        Ongoing,
-        Closing,
-        Finished
+        New, // else
+        Approaching, // <3 days to reservation
+        Today, // reservation today
+        Ongoing, // reservation ongoing
+        Closing, // <2 days till the end of reservation
+        Finished // finishing today
     }
 }

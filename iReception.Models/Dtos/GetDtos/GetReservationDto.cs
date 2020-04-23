@@ -22,8 +22,8 @@ namespace iReception.Models.Dtos.GetDtos
         public bool Paid { get; set; }
 
         /* Relations */
-        public Room Room { get; set; }
-        public Client Client { get; set; }
+        public GetRoomDto Room { get; set; }
+        public GetClientDto Client { get; set; }
 
         public IEnumerable<MinuteServiceToReservation> MinuteServicesToReservation { get; set; }
     }

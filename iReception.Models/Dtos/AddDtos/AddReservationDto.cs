@@ -15,6 +15,7 @@ namespace iReception.Models.Dtos.AddDtos
         [Display(Name = "Client")]
         public int ClientId { get; set; }
 
+        //Will invoke MinuteServiceToReservation repo in service
         [Required]
         public Dictionary<int, int> MinuteServices { get; set; }
 
@@ -25,6 +26,8 @@ namespace iReception.Models.Dtos.AddDtos
         [Required]
         [Display(Name = "Departure date")]
         public DateTime ReservationEndDate { get; set; }
+
+        //Balance, paid, active and isdeleted will be set automatically in repo
 
     }
 }

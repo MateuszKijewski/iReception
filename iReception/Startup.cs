@@ -64,7 +64,7 @@ namespace iReception
             services.AddScoped<IServiceService, ServiceService>();            
 
             services.AddScoped<IUserService, UserService>();
-            
+            services.AddScoped<ITimeProvider, TimeProvider>();
 
             // Identity settings
             services.Configure<IdentityOptions>(options =>

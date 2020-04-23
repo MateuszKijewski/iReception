@@ -11,7 +11,6 @@ namespace iReception.Models.Entities
         public decimal Balance { get; set; }
         public DateTime ReservationStartDate { get; set; }
         public DateTime ReservationEndDate { get; set; }
-        public ReservationStatus Status { get; set; }
         public bool Paid { get; set; }
         public bool Active { get; set; }
         public bool IsDeleted { get; set; }
