@@ -9,9 +9,9 @@ namespace iReception.Models.Entities
     {
         public int Id { get; set; }
         public decimal Balance { get; set; }
-        public DateTime ReservationStartDate { get; set; }
-        public DateTime ReservationEndDate { get; set; }
-        public bool Paid { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public bool IsPaid { get; set; }
         public bool Active { get; set; }
         public bool IsDeleted { get; set; }
 

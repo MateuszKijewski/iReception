@@ -13,6 +13,7 @@ namespace iReception.Repository
 {
     public class MinuteServiceToReservationRepository : IMinuteServicesToReservationRepository
     {
+
         private readonly iReceptionDbContext _db;
         private readonly IMinuteServiceRepository _minuteServiceRepository;
 
@@ -23,6 +24,22 @@ namespace iReception.Repository
             _minuteServiceRepository = minuteServiceRepository;
         }
 
+        public Task<int> AddAsync(int reservationId, MinuteServiceToReservation minuteServiceToReservation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<MinuteServiceToReservation>> ListAssignedAsync(int reservationId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> DeleteAsync(int reservationId, int minuteServiceId)
+        {
+            throw new NotImplementedException();
+        }
+
+        /*
         public async Task<int[]> AddAsync(int reservationId, Dictionary<int, int> servicesWithDuration)
         {
             if (servicesWithDuration != null)
@@ -47,9 +64,10 @@ namespace iReception.Repository
             return new[]{reservationId};
         }
 
-        public async Task<int[]> ListAssignedAsync()
+        public async Task<int[]> ListAssignedAsync(int id)
         {
-            var assignedServicesIds = _db.MinuteServicesToReservation.Select(mstr => mstr.MinuteServiceId);
+            var assignedServices = _db.MinuteServicesToReservation.Where(mstr => mstr.ReservationId == id);
+            var assignedServicesIds = assignedServices.Select(x => x.MinuteServiceId);
             return await assignedServicesIds.ToArrayAsync();
         }
          
@@ -62,5 +80,7 @@ namespace iReception.Repository
 
             return minuteServiceId;
         }
+    }
+    */
     }
 }

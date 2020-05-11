@@ -57,16 +57,16 @@ namespace iReception.Repository
 
         public async Task<IEnumerable<Room>> FilterAsync(FilterRoomDto filterRoomDto)
         {
-            int filters = 0;
-            bool availableFiltered = false;
-            bool damagedFiltered = false;
-            bool cleanFiltered = false;
-            bool rentFiltered = false;
+            var filters = 0;
+            var availableFiltered = false;
+            var damagedFiltered = false;
+            var cleanFiltered = false;
+            var rentFiltered = false;
 
-            List<Room> result = new List<Room>();
+            var result = new List<Room>();
 
-            int minId = filterRoomDto.MinId ?? 0;
-            int maxId = filterRoomDto.MaxId ?? 0;               
+            var minId = filterRoomDto.MinId ?? 0;
+            var maxId = filterRoomDto.MaxId ?? 0;               
 
             if (minId > 0 || maxId > 0)
             {

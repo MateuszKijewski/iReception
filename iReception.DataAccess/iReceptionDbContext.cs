@@ -24,6 +24,7 @@ namespace iReception.DataAccess
         public DbSet<RoomToService> RoomToServices { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<MinuteServiceToReservation> MinuteServicesToReservation { get; set; }
+        public DbSet<HotelCompany> HotelCompanies { get; set; }
         
 
         protected override void OnModelCreating(ModelBuilder builder)

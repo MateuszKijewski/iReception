@@ -30,8 +30,8 @@ namespace iReception.Models.Converters
         {
             return new Reservation
             {
-                ReservationStartDate = addReservationDto.ReservationStartDate,
-                ReservationEndDate = addReservationDto.ReservationEndDate,
+                StartDate = addReservationDto.ReservationStartDate,
+                EndDate = addReservationDto.ReservationEndDate,
                 RoomId = addReservationDto.RoomId,
                 ClientId =  addReservationDto.ClientId
             };
@@ -39,15 +39,15 @@ namespace iReception.Models.Converters
 
         public GetReservationDto ReservationToGetReservationDto(Reservation reservation)
         {
-            var status = AssignStatus(reservation.ReservationStartDate, reservation.ReservationEndDate);
+            var status = AssignStatus(reservation.StartDate, reservation.EndDate);
             return new GetReservationDto
             {
                 Id = reservation.Id,
                 Balance = reservation.Balance,
-                ReservationStartDate = reservation.ReservationStartDate,
-                ReservationEndDate = reservation.ReservationEndDate,
+                StartDate = reservation.StartDate,
+                EndDate = reservation.EndDate,
                 Status = status,
-                Paid = reservation.Paid,
+                Paid = reservation.IsPaid,
                 Room = _roomConverter.RoomToGetRoomDto(reservation.Room),
                 Client = _clientConverter.ClientToGetClientDto(reservation.Client)
             };

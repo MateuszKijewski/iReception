@@ -13,10 +13,10 @@ namespace iReception.Models.Dtos.GetDtos
         public decimal Balance { get; set; }
 
         [Display(Name = "Arrival date")]
-        public DateTime ReservationStartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Display(Name = "Departure date")]
-        public DateTime ReservationEndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public ReservationStatus Status { get; set; }
         public bool Paid { get; set; }

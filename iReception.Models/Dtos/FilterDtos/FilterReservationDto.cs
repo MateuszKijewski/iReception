@@ -13,23 +13,27 @@ namespace iReception.Models.Dtos.FilterDtos
         public int? MaxId { get; set; }
 
         [Display(Name = "Balance")]
-        public decimal MinBalance { get; set; }
-        public decimal MaxBalance { get; set; }
+        public decimal? MinBalance { get; set; }
+        public decimal? MaxBalance { get; set; }
 
         [Display(Name = "Reservations from")]
-        public DateTime MinReservationDate { get; set; }
-        
+        public DateTime? MinDate { get; set; }
+
+        [Display(Name = "Reservations to")]
+        public DateTime? MaxDate { get; set; }
+
         [Display(Name = "Room")]
         public string Room { get; set; }
 
-        [Display(Name = "Reservations to")]
-        public DateTime MaxReservationDate { get; set; }
-
         [Display(Name = "Reservation status")]
-        public ReservationStatus ReservationStatus { get; set; }
+        public ReservationStatus Status { get; set; }
 
         [Display(Name = "Active")]
         public bool IsActive { get; set; }
         public bool IsNotActive { get; set; }
+
+        [Display(Name = "Paid")]
+        public bool IsPaid { get; set; }
+        public bool IsNotPaid { get; set; }
     }
 }

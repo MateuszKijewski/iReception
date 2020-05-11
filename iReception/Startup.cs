@@ -48,6 +48,9 @@ namespace iReception
             services.AddSingleton<IRoomConverter, RoomConverter>();
             services.AddSingleton<IMinuteServiceConverter, MinuteServiceConverter>();
             services.AddSingleton<IServiceConverter, ServiceConverter>();
+            services.AddSingleton<IReservationConverter, ReservationConverter>();
+            services.AddSingleton<IHotelCompanyConverter, HotelCompanyConverter>();
+            services.AddSingleton<IInvoicePositionConverter, InvoicePositionConverter>();
             // Repositories
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IBuildingRepository, BuildingRepository>();
@@ -56,12 +59,16 @@ namespace iReception
             services.AddScoped<IServiceRepository, ServiceRepository>();
             services.AddScoped<IRoomToServiceRepository, RoomToServiceRepository>();
             services.AddScoped<IRoomToMinuteServiceRepository, RoomToMinuteServiceRepository>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
+            services.AddScoped<IHotelCompanyRepository, HotelCompanyRepository>();
             // Services
             services.AddScoped<IClientService, ClientService>();            
             services.AddScoped<IBuildingService, BuildingService>();
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IMinuteServiceService, MinuteServiceService>();
-            services.AddScoped<IServiceService, ServiceService>();            
+            services.AddScoped<IServiceService, ServiceService>();
+            services.AddScoped<IReservationService, ReservationService>();
+            services.AddScoped<IHotelCompanyService, HotelCompanyService>();
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITimeProvider, TimeProvider>();

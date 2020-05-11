@@ -16,6 +16,5 @@ namespace iReception.Repository.Interfaces
         Task<IEnumerable<Reservation>> ListAsync();
 
         Task<int> PayAsync(int id);
-        Task<int> GetInvoiceDataAsync(int id);
     }
 }
