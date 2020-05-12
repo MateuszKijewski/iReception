@@ -24,63 +24,36 @@ namespace iReception.Repository
             _minuteServiceRepository = minuteServiceRepository;
         }
 
-        public Task<int> AddAsync(int reservationId, MinuteServiceToReservation minuteServiceToReservation)
+        public async Task<int> AddAsync(MinuteServiceToReservation minuteServiceToReservation)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<MinuteServiceToReservation>> ListAssignedAsync(int reservationId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> DeleteAsync(int reservationId, int minuteServiceId)
-        {
-            throw new NotImplementedException();
-        }
-
-        /*
-        public async Task<int[]> AddAsync(int reservationId, Dictionary<int, int> servicesWithDuration)
-        {
-            if (servicesWithDuration != null)
+            if (minuteServiceToReservation.MinuteServiceId == 0)
             {
-                foreach(KeyValuePair<int, int> entry in servicesWithDuration)
-                {
-                    var minuteService = await _minuteServiceRepository.GetAsync(entry.Key);
-                    var minuteServiceToReservation = new MinuteServiceToReservation
-                    {
-                        ReservationId = reservationId,
-                        MinuteServiceId = entry.Key,
-                        Duration = entry.Value,
-                        Cost = entry.Value * minuteService.PricePerMinute
-                    };
-                    await _db.MinuteServicesToReservation.AddAsync(minuteServiceToReservation);
-                }
-
-                await _db.SaveChangesAsync();
-                return servicesWithDuration.Keys.ToArray();
+                return minuteServiceToReservation.ReservationId;
             }
+            var minuteService = await _minuteServiceRepository.GetAsync(minuteServiceToReservation.MinuteServiceId);
+            minuteServiceToReservation.Cost = minuteServiceToReservation.Duration * minuteService.PricePerMinute;
 
-            return new[]{reservationId};
+            await _db.MinuteServicesToReservation.AddAsync(minuteServiceToReservation);
+            await _db.SaveChangesAsync();
+
+            return minuteServiceToReservation.MinuteServiceId;
         }
 
-        public async Task<int[]> ListAssignedAsync(int id)
+        public async Task<IEnumerable<MinuteServiceToReservation>> ListAssignedAsync(int reservationId)
         {
-            var assignedServices = _db.MinuteServicesToReservation.Where(mstr => mstr.ReservationId == id);
-            var assignedServicesIds = assignedServices.Select(x => x.MinuteServiceId);
-            return await assignedServicesIds.ToArrayAsync();
+            var assignedServices = await _db.MinuteServicesToReservation.Where(mstr => mstr.ReservationId == reservationId).ToListAsync();
+
+            return assignedServices;
         }
-         
+
         public async Task<int> DeleteAsync(int reservationId, int minuteServiceId)
         {
-            var connectionToDelete = await _db.MinuteServicesToReservation.FindAsync(reservationId,
-                                                                                        minuteServiceId);
-            _db.Remove(connectionToDelete);
+            var assignedService = await _db.MinuteServicesToReservation.FindAsync(reservationId, minuteServiceId);
+
+            _db.MinuteServicesToReservation.Remove(assignedService);
             await _db.SaveChangesAsync();
 
             return minuteServiceId;
         }
-    }
-    */
     }
 }

@@ -25,6 +25,8 @@ namespace iReception.Test.ReservationTests
             {
                 PricePerDay = 10
             };
+            await context.Rooms.AddAsync(roomToReturn);
+            await context.SaveChangesAsync();
 
             var repository = new ReservationRepository(context);
             var convertedDto = new Reservation

@@ -9,6 +9,26 @@
     &lt;/TestAncestor&gt;&#xD;
   &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8c631a09_002Da738_002D443b_002D8ca1_002D9bef5747a845/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ShouldAssignServicesToReservation" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::8FBB986A-0895-4D54-9AC9-D2B86DD065D8::.NETCoreApp,Version=v3.1::iReception.Test.ReservationTests.MinuteServiceToReservationTests.ShouldAssignServicesToReservation&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=909742fa_002D366c_002D4df1_002D8d0b_002Db308c9aa5c67/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ShouldAssignServicesToReservation #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;Or&gt;&#xD;
+      &lt;TestAncestor&gt;&#xD;
+        &lt;TestId&gt;xUnit::8FBB986A-0895-4D54-9AC9-D2B86DD065D8::.NETCoreApp,Version=v3.1::iReception.Test.ReservationTests.MinuteServiceToReservationTests.ShouldAssignNothingAndReturnReservationId&lt;/TestId&gt;&#xD;
+      &lt;/TestAncestor&gt;&#xD;
+      &lt;TestAncestor&gt;&#xD;
+        &lt;TestId&gt;xUnit::8FBB986A-0895-4D54-9AC9-D2B86DD065D8::.NETCoreApp,Version=v3.1::iReception.Test.ReservationTests.MinuteServiceToReservationTests.ShouldRemoveGivenConnection&lt;/TestId&gt;&#xD;
+      &lt;/TestAncestor&gt;&#xD;
+    &lt;/Or&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;xUnit::8FBB986A-0895-4D54-9AC9-D2B86DD065D8::.NETCoreApp,Version=v3.1::iReception.Test.ReservationTests.ReservationRepositoryTests.ShouldAddNewReservation&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+  &lt;/Or&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c221b206_002D6ca1_002D41bf_002Da38c_002Dafdddceeb315/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ShouldReturnInvoicePositionFromReservation" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Or&gt;&#xD;
     &lt;TestAncestor&gt;&#xD;

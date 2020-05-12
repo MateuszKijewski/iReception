@@ -13,10 +13,11 @@ namespace iReception.Models.Converters
         public MinuteServiceToReservation AddMinuteServiceToReservationDtoToMinuteServiceToReservation(
             AddMinuteServiceToReservationDto addMinuteServiceToReservationDto)
         {
+            var minuteServiceId = addMinuteServiceToReservationDto.MinuteServiceId ?? 0;
             return new MinuteServiceToReservation()
             {
                 ReservationId = addMinuteServiceToReservationDto.ReservationId,
-                MinuteServiceId = addMinuteServiceToReservationDto.MinuteServiceId,
+                MinuteServiceId = minuteServiceId,
                 Duration = addMinuteServiceToReservationDto.Duration,
             };
         }

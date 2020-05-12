@@ -19,11 +19,13 @@ namespace iReception.Services
         private readonly IHotelCompanyRepository _hotelCompanyRepository;
         private readonly IHotelCompanyConverter _hotelCompanyConverter;
         private readonly IInvoicePositionConverter _invoicePositionConverter;
+        private readonly IMinuteServiceToReservationConverter _minuteServiceToReservationConverter;
 
         //converterHelpers
         private readonly IClientRepository _clientRepository;
         private readonly IRoomRepository _roomRepository;
         private readonly IMinuteServicesToReservationRepository _minuteServicesToReservationRepository;
+        private readonly IClientConverter _clientConverter;
 
         public ReservationService(IReservationRepository reservationRepository,
                                 IReservationConverter reservationConverter,
@@ -32,7 +34,9 @@ namespace iReception.Services
                                 IInvoicePositionConverter invoicePositionConverter,
                                 IClientRepository clientRepository,
                                 IRoomRepository roomRepository,
-                                IMinuteServicesToReservationRepository minuteServicesToReservationRepository)
+                                IMinuteServicesToReservationRepository minuteServicesToReservationRepository,
+                                IClientConverter clientConverter,
+                                IMinuteServiceToReservationConverter minuteServiceToReservationConverter)
         {
             _reservationRepository = reservationRepository;
             _reservationConverter = reservationConverter;
@@ -42,6 +46,8 @@ namespace iReception.Services
             _clientRepository = clientRepository;
             _roomRepository = roomRepository;
             _minuteServicesToReservationRepository = minuteServicesToReservationRepository;
+            _clientConverter = clientConverter;
+            _minuteServiceToReservationConverter = minuteServiceToReservationConverter;
         }
 
         public async Task<int> AddReservationAsync(AddReservationDto addReservationDto)
@@ -103,18 +109,40 @@ namespace iReception.Services
             var reservation = await _reservationRepository.GetAsync(id);
             reservation.Client = await _clientRepository.GetAsync(reservation.ClientId);
             reservation.Room = await _roomRepository.GetAsync(reservation.RoomId);
+            var assignedMinuteServices = await _minuteServicesToReservationRepository.ListAssignedAsync(reservation.Id);
+            var hotelCompany = await _hotelCompanyRepository.GetAsync();
 
-            // Id usług przypisanych do 
-            var reservationMinuteServicesIds = await _minuteServicesToReservationRepository.ListAssignedAsync(id);
             
-
-            var reservationPosition = _invoicePositionConverter.ReservationToGetInvoicePositionDto(reservation);
-            
-
+            invoiceData.HotelCompanyDetails = _hotelCompanyConverter.HotelCompanyToGetHotelCompanyDto(hotelCompany);
+            invoiceData.Positions.AddRange(assignedMinuteServices.Select(ms => _invoicePositionConverter.MinuteServiceToGetInvoicePositionDto(ms)));
+            invoiceData.Positions.Add(_invoicePositionConverter.ReservationToGetInvoicePositionDto(reservation));
+            invoiceData.ClientDetails = _clientConverter.ClientToGetClientDto(reservation.Client);
             invoiceData.IssueDate = DateTime.Today;
             invoiceData.PaymentDate = DateTime.Today;
 
             return invoiceData;
+        }
+
+        public async Task<int> AssignMinuteServiceAsync(AddMinuteServiceToReservationDto addMinuteServiceToReservationDto)
+        {
+            var convertedMinuteServiceToReservationDto =
+                _minuteServiceToReservationConverter.AddMinuteServiceToReservationDtoToMinuteServiceToReservation(
+                    addMinuteServiceToReservationDto);
+
+            return await _minuteServicesToReservationRepository.AddAsync(convertedMinuteServiceToReservationDto);
+        }
+
+        public async Task<IEnumerable<GetMinuteServiceToReservationDto>> ListAssignedMinuteServices(int id)
+        {
+            var assignedMinuteServices = await _minuteServicesToReservationRepository.ListAssignedAsync(id);
+
+            return assignedMinuteServices.Select(ams =>
+                _minuteServiceToReservationConverter.MinuteServiceToReservationToGetMinuteServiceToReservationDto(ams));
+        }
+
+        public Task<int> RemoveReservationId(int reservationId, int minuteServiceId)
+        {
+            return _minuteServicesToReservationRepository.DeleteAsync(reservationId, minuteServiceId);
         }
     }
 }

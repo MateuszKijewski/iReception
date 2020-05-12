@@ -9,7 +9,7 @@ namespace iReception.Models.Dtos.AddDtos
     {
         public int ReservationId { get; set; }
         public Reservation Reservation { get; set; }
-        public int MinuteServiceId { get; set; }
+        public int? MinuteServiceId { get; set; }
         public MinuteService MinuteService { get; set; }
         public int Duration { get; set; }
     }

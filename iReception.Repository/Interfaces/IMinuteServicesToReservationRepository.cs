@@ -9,7 +9,7 @@ namespace iReception.Repository.Interfaces
 {
     public interface IMinuteServicesToReservationRepository
     {
-        Task<int> AddAsync(int reservationId, MinuteServiceToReservation minuteServiceToReservation);
+        Task<int> AddAsync(MinuteServiceToReservation minuteServiceToReservation);
         Task<IEnumerable<MinuteServiceToReservation>> ListAssignedAsync(int reservationId);
         Task<int> DeleteAsync(int reservationId, int minuteServiceId);
     }

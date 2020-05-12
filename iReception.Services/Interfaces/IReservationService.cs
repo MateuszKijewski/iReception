@@ -17,5 +17,9 @@ namespace iReception.Services.Interfaces
         Task<IEnumerable<GetReservationDto>> ListReservationsAsync();
         Task<int> PayForReservationAsync(int id);
         Task<GetInvoiceDto> GetInvoiceData(int id);
+
+        Task<int> AssignMinuteServiceAsync(AddMinuteServiceToReservationDto addMinuteServiceToReservationDto);
+        Task<IEnumerable<GetMinuteServiceToReservationDto>> ListAssignedMinuteServices(int id);
+        Task<int> RemoveReservationId(int reservationId, int minuteServiceId);
     }
 }

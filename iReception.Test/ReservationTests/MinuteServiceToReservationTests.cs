@@ -18,12 +18,13 @@ namespace iReception.Test.ReservationTests
     {
 
         [Fact]
-        public async Task ShouldAssignServicesToReservation()
+        public async Task ShouldAssignServiceToReservation()
         {
             //Arrange
             var context = new iReceptionDbContext(DbOptions);
             var returnedMinuteService = new MinuteService
             {
+                Id = 1,
                 PricePerMinute = 10
             };
             var msRepository = new Mock<IMinuteServiceRepository>();
@@ -33,22 +34,22 @@ namespace iReception.Test.ReservationTests
             var repository = new MinuteServiceToReservationRepository(context, msRepository.Object);
 
 
-            var reservationId = 1;
-            var servicesWithDuration = new Dictionary<int, int>
+            var convertedMinuteServiceToReservation = new MinuteServiceToReservation
             {
-                {12, 30},
-                {14, 60}
+                ReservationId = 1,
+                MinuteServiceId = 12,
+                Duration = 30
             };
 
             //Act
-            var actual = await repository.AddAsync(reservationId, servicesWithDuration);
-            var expected = servicesWithDuration.Keys.ToArray();
+            var actual = await repository.AddAsync(convertedMinuteServiceToReservation);
+            var expected = convertedMinuteServiceToReservation.MinuteServiceId;
             var actualCost = (await context.MinuteServicesToReservation.FirstAsync(
                 mstr => mstr.MinuteServiceId == 12)).Cost;
-            var expectedCost = servicesWithDuration[12] * returnedMinuteService.PricePerMinute;
+            var expectedCost = convertedMinuteServiceToReservation.Duration * returnedMinuteService.PricePerMinute;
 
             //Assert
-            actual.Should().BeEquivalentTo(expected);
+            Assert.Equal(expected, actual);
             Assert.Equal(expectedCost, actualCost);
         }
 
@@ -58,14 +59,19 @@ namespace iReception.Test.ReservationTests
             //Arrange
             var context = new iReceptionDbContext(DbOptions);
             var repository = new MinuteServiceToReservationRepository(context, null);
-            var reservationId = 1;
+            var convertedMinuteServiceToReservation = new MinuteServiceToReservation
+            {
+                ReservationId = 1,
+                MinuteServiceId = 0,
+                Duration = 30
+            };
 
             //Act
-            var actual = await repository.AddAsync(reservationId, null);
-            var expected = reservationId;
+            var actual = await repository.AddAsync(convertedMinuteServiceToReservation);
+            var expected = convertedMinuteServiceToReservation.ReservationId;
 
             //Assert
-            actual.Should().BeEquivalentTo(expected);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
