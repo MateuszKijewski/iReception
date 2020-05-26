@@ -152,7 +152,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Room @room.Number</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Details</a>
+	                        <a asp-controller="reservation" asp-action="BookRoom" asp-route-roomId="@room.Id" class="btn btn-primary">Book it!</a>
                         </div>
                         <div class="card-footer text-muted">
                             Free wifi | Bathroom | Kitchen

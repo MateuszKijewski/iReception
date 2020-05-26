@@ -40,6 +40,7 @@ namespace iReception
                 .AddEntityFrameworkStores<iReceptionDbContext>();
 
             services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
 
             // Converters
@@ -48,9 +49,11 @@ namespace iReception
             services.AddSingleton<IRoomConverter, RoomConverter>();
             services.AddSingleton<IMinuteServiceConverter, MinuteServiceConverter>();
             services.AddSingleton<IServiceConverter, ServiceConverter>();
+            services.AddSingleton<ITimeProvider, TimeProvider>();
             services.AddSingleton<IReservationConverter, ReservationConverter>();
             services.AddSingleton<IHotelCompanyConverter, HotelCompanyConverter>();
             services.AddSingleton<IInvoicePositionConverter, InvoicePositionConverter>();
+            services.AddSingleton<IMinuteServiceToReservationConverter, MinuteServiceToReservationConverter>();
             // Repositories
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IBuildingRepository, BuildingRepository>();
@@ -61,6 +64,7 @@ namespace iReception
             services.AddScoped<IRoomToMinuteServiceRepository, RoomToMinuteServiceRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<IHotelCompanyRepository, HotelCompanyRepository>();
+            services.AddScoped<IMinuteServicesToReservationRepository, MinuteServiceToReservationRepository>();
             // Services
             services.AddScoped<IClientService, ClientService>();            
             services.AddScoped<IBuildingService, BuildingService>();
@@ -71,7 +75,6 @@ namespace iReception
             services.AddScoped<IHotelCompanyService, HotelCompanyService>();
 
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ITimeProvider, TimeProvider>();
 
             // Identity settings
             services.Configure<IdentityOptions>(options =>

@@ -1,0 +1,71 @@
+﻿@using iReception.Models.Entities
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using System.Linq
+@model AddReservationDto
+
+@{
+	ViewBag.Title = "title";
+	Layout = "_Layout";
+}
+
+
+<div class="row">
+	<div class="col-md-12">
+		<h1>Book a room</h1>
+		<div class="card mb-2">
+			<div class="card-header">Room @ViewBag.Room.Number</div>
+			<div class="card-body">
+				<img src="~/images/@ViewBag.Room.PhotoPath" class="img-fluid mx-auto d-block mb-5" alt="Responsive image">
+				<hr />
+				<!--<img class="card-img-top rounded mx-auto d-block" src="~/images/@ViewBag.Room.PhotoPath" style="height: 350px; width: 600px;" />-->
+				<div class="row">
+					<div class="offset-2"></div>
+					<div class="col-5">
+						<h5 class="card-title">
+							<label>Room details</label>
+						</h5>
+						<ul>
+							<li>@ViewBag.Room.Standard standard</li>
+							<li>@ViewBag.Room.Floor floor</li>
+							<li>@ViewBag.Room.PricePerDay per day</li>
+						</ul>
+					</div>
+					<div class="col-5">
+						<h5 class="card-title">
+							<label>Available services</label>
+						</h5>
+						<ul>
+							@foreach (var service in ViewBag.Services)
+							{
+								<li>@service.Name</li>
+							}
+						</ul>
+					</div>
+				</div>
+				<hr />
+				<form>
+					<div class="row">
+						<div class="offset-2"></div>
+
+						<div class="col-5">
+							<h5 class="card-title">
+								<label>How long will you stay with us?</label>
+							</h5>
+							From <input type="date" />
+							to <input type="date" />
+						</div>
+						<div class="col-5">
+							<h5 class="card-title">
+								<label>Order minute services</label>
+							</h5>
+							@foreach (var minuteService in ViewBag.MinuteServices)
+							{
+								<input asp-for="MinuteServices" type="hidden" value=""/>
+							}
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
