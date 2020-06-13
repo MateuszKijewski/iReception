@@ -11,3 +11,16 @@ G:\Programowanie\Projects\iReception\iReception.Repository\bin\Debug\netcoreapp3
 G:\Programowanie\Projects\iReception\iReception.Repository\obj\Debug\netcoreapp3.1\iReception.Repository.csproj.CopyComplete
 G:\Programowanie\Projects\iReception\iReception.Repository\obj\Debug\netcoreapp3.1\iReception.Repository.dll
 G:\Programowanie\Projects\iReception\iReception.Repository\obj\Debug\netcoreapp3.1\iReception.Repository.pdb
+C:\Programowanie\projects\iReception\iReception.Repository\bin\Debug\netcoreapp3.1\iReception.Repository.deps.json
+C:\Programowanie\projects\iReception\iReception.Repository\bin\Debug\netcoreapp3.1\iReception.Repository.dll
+C:\Programowanie\projects\iReception\iReception.Repository\bin\Debug\netcoreapp3.1\iReception.Repository.pdb
+C:\Programowanie\projects\iReception\iReception.Repository\bin\Debug\netcoreapp3.1\iReception.DataAccess.dll
+C:\Programowanie\projects\iReception\iReception.Repository\bin\Debug\netcoreapp3.1\iReception.Models.dll
+C:\Programowanie\projects\iReception\iReception.Repository\bin\Debug\netcoreapp3.1\iReception.DataAccess.pdb
+C:\Programowanie\projects\iReception\iReception.Repository\bin\Debug\netcoreapp3.1\iReception.Models.pdb
+C:\Programowanie\projects\iReception\iReception.Repository\obj\Debug\netcoreapp3.1\iReception.Repository.csprojAssemblyReference.cache
+C:\Programowanie\projects\iReception\iReception.Repository\obj\Debug\netcoreapp3.1\iReception.Repository.AssemblyInfoInputs.cache
+C:\Programowanie\projects\iReception\iReception.Repository\obj\Debug\netcoreapp3.1\iReception.Repository.AssemblyInfo.cs
+C:\Programowanie\projects\iReception\iReception.Repository\obj\Debug\netcoreapp3.1\iReception.Repository.csproj.CopyComplete
+C:\Programowanie\projects\iReception\iReception.Repository\obj\Debug\netcoreapp3.1\iReception.Repository.dll
+C:\Programowanie\projects\iReception\iReception.Repository\obj\Debug\netcoreapp3.1\iReception.Repository.pdb

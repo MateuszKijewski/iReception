@@ -17,7 +17,7 @@ namespace iReception.Models.Dtos.AddDtos
 
         //Will invoke MinuteServiceToReservation repo in service
         [Required]
-        public Dictionary<int, int> MinuteServices { get; set; }
+        public List<ReserveMinuteServiceDto> MinuteServices { get; set; }
 
         [Required]
         [Display(Name = "Arrival date")]

@@ -9655,19 +9655,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mateusz\\.nuget\\packages\\": {}
+    "C:\\Users\\Mateu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Programowanie\\Projects\\iReception\\iReception\\iReception.App.csproj",
+      "projectUniqueName": "C:\\Programowanie\\projects\\iReception\\iReception\\iReception.App.csproj",
       "projectName": "iReception.App",
-      "projectPath": "G:\\Programowanie\\Projects\\iReception\\iReception\\iReception.App.csproj",
-      "packagesPath": "C:\\Users\\Mateusz\\.nuget\\packages\\",
-      "outputPath": "G:\\Programowanie\\Projects\\iReception\\iReception\\obj\\",
+      "projectPath": "C:\\Programowanie\\projects\\iReception\\iReception\\iReception.App.csproj",
+      "packagesPath": "C:\\Users\\Mateu\\.nuget\\packages\\",
+      "outputPath": "C:\\Programowanie\\projects\\iReception\\iReception\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Mateusz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mateu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9680,14 +9680,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "G:\\Programowanie\\Projects\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj": {
-              "projectPath": "G:\\Programowanie\\Projects\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj"
+            "C:\\Programowanie\\projects\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj": {
+              "projectPath": "C:\\Programowanie\\projects\\iReception\\iReception.DataAccess\\iReception.DataAccess.csproj"
             },
-            "G:\\Programowanie\\Projects\\iReception\\iReception.Repository\\iReception.Repository.csproj": {
-              "projectPath": "G:\\Programowanie\\Projects\\iReception\\iReception.Repository\\iReception.Repository.csproj"
+            "C:\\Programowanie\\projects\\iReception\\iReception.Repository\\iReception.Repository.csproj": {
+              "projectPath": "C:\\Programowanie\\projects\\iReception\\iReception.Repository\\iReception.Repository.csproj"
             },
-            "G:\\Programowanie\\Projects\\iReception\\iReception.Services\\iReception.Services.csproj": {
-              "projectPath": "G:\\Programowanie\\Projects\\iReception\\iReception.Services\\iReception.Services.csproj"
+            "C:\\Programowanie\\projects\\iReception\\iReception.Services\\iReception.Services.csproj": {
+              "projectPath": "C:\\Programowanie\\projects\\iReception\\iReception.Services\\iReception.Services.csproj"
             }
           }
         }
@@ -9750,7 +9750,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

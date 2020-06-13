@@ -1,0 +1,19 @@
+﻿@using iReception.Models.Entities
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using System.Linq
+@model GetReservationDto
+
+@{
+	ViewBag.Title = "title";
+	Layout = "_Layout";
+}
+
+
+<div class="row">
+	<div class="col-md-12">
+		<h1>Book a room</h1>
+		<div class="card mb-2">
+			<div class="card-header">Room @Model.Id</div>
+			</div>
+		</div>
+	</div>

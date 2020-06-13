@@ -8,3 +8,13 @@ G:\Programowanie\Projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\i
 G:\Programowanie\Projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\iReception.Models.pdb
 G:\Programowanie\Projects\iReception\iReception.Models\bin\Debug\netcoreapp3.1\iReception.Models.runtimeconfig.json
 G:\Programowanie\Projects\iReception\iReception.Models\bin\Debug\netcoreapp3.1\iReception.Models.runtimeconfig.dev.json
+C:\Programowanie\projects\iReception\iReception.Models\bin\Debug\netcoreapp3.1\iReception.Models.deps.json
+C:\Programowanie\projects\iReception\iReception.Models\bin\Debug\netcoreapp3.1\iReception.Models.runtimeconfig.json
+C:\Programowanie\projects\iReception\iReception.Models\bin\Debug\netcoreapp3.1\iReception.Models.runtimeconfig.dev.json
+C:\Programowanie\projects\iReception\iReception.Models\bin\Debug\netcoreapp3.1\iReception.Models.dll
+C:\Programowanie\projects\iReception\iReception.Models\bin\Debug\netcoreapp3.1\iReception.Models.pdb
+C:\Programowanie\projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\iReception.Models.csprojAssemblyReference.cache
+C:\Programowanie\projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\iReception.Models.AssemblyInfoInputs.cache
+C:\Programowanie\projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\iReception.Models.AssemblyInfo.cs
+C:\Programowanie\projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\iReception.Models.dll
+C:\Programowanie\projects\iReception\iReception.Models\obj\Debug\netcoreapp3.1\iReception.Models.pdb

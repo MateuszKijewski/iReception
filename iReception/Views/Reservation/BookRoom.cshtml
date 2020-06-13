@@ -43,7 +43,7 @@
 					</div>
 				</div>
 				<hr />
-				<form>
+				<form method="post" asp-controller="reservation" asp-action="bookroom">
 					<div class="row">
 						<div class="offset-2"></div>
 
@@ -51,19 +51,26 @@
 							<h5 class="card-title">
 								<label>How long will you stay with us?</label>
 							</h5>
-							From <input type="date" />
-							to <input type="date" />
+							From <input asp-for="ReservationStartDate" type="date" />
+							to <input asp-for="ReservationEndDate" type="date" />
 						</div>
-						<div class="col-5">
+						<div class="col-3">
 							<h5 class="card-title">
 								<label>Order minute services</label>
 							</h5>
-							@foreach (var minuteService in ViewBag.MinuteServices)
+							@for (var i = 0; i < ViewBag.MinuteServices.Count; i++)
 							{
-								<input asp-for="MinuteServices" type="hidden" value=""/>
-							}
+								<input asp-for="MinuteServices[i].MinuteServiceId" type="hidden" value="@ViewBag.MinuteServices[i].Id" />
+								<b>@ViewBag.MinuteServices[i].Name</b><br />
+								@ViewBag.MinuteServices[i].Description<br />
+								<span>Reserve for </span><input asp-for="MinuteServices[i].Duration" type="number" /><span> minutes</span><br />
+								<hr />
+							}							
 						</div>
 					</div>
+					<input type="hidden" asp-for="RoomId" value="@ViewBag.Room.Id" />
+					<input type="hidden" asp-for="ClientId" value="1" />
+					<button type="submit" asp-controller="Reservation" asp-action="BookRoom">Book it!</button>
 				</form>
 			</div>
 		</div>

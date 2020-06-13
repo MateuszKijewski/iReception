@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using iReception.Models.Dtos.AddDtos;
 using iReception.Repository.Interfaces;
 using iReception.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,7 @@ namespace iReception.App.Controllers
             _reservationService = reservationService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> BookRoom(int roomId)
         {
             var room = await _roomService.GetRoomAsync(roomId);
@@ -44,6 +46,40 @@ namespace iReception.App.Controllers
             
 
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> BookRoom(AddReservationDto addReservationDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                foreach(var model in ModelState.Values)
+                {
+                    foreach (var error in model.Errors) 
+                    {
+                        Console.WriteLine(error.ErrorMessage);
+                    }
+                }
+                return RedirectToAction("BookRoom", "Reservation", new { roomId = addReservationDto.RoomId });
+            }
+            var reservationId = await _reservationService.AddReservationAsync(addReservationDto);
+            foreach(var bookedService in addReservationDto.MinuteServices)
+            {
+                await _reservationService.AssignMinuteServiceAsync(new AddMinuteServiceToReservationDto() { 
+                    ReservationId = reservationId,
+                    MinuteServiceId = bookedService.MinuteServiceId,
+                    Duration = bookedService.Duration
+                });
+            }
+
+            return RedirectToAction("Manage", "Reservation", new { reservationId = reservationId });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Manage(int reservationId) 
+        {
+            var reservation = await _reservationService.GetReservationAsync(reservationId);
+
+            return View(reservation);
         }
     }
 }
